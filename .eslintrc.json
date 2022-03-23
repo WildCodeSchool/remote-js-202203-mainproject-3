@@ -18,9 +18,7 @@
         "react"
     ],
     "rules": {
-         "indent": [
-            "ignoredNodes"
-         ],
+         "indent": "off",
        /* "linebreak-style": [
             "error",
             "unix"
