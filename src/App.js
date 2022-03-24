@@ -14,8 +14,9 @@ function App() {
       .get('https://quizapi.io/api/v1/questions?apiKey=8P8azHvLpClCBemACzANfCUvptPakrF6D4SNHyX8&limit=10')
       .then((response)=> response.data)
       .then((data) =>
-        setQuizzList(data[0]),
+        setQuizzList(data),
         );        
+      document.getElementById('buttonBegin').remove();
   };
   
 
@@ -24,7 +25,7 @@ function App() {
       <main>
         <h1 className="title">The mystère Quizz</h1>
       </main>
-      <button className="quizzButton"onClick={getQuizz}>Commencer le Quizz</button>
+      <button className="quizzButton" onClick={getQuizz} id='buttonBegin'>Commencer le Quizz</button>
         {quizzList.length !== 0 ? <Quizz quizzList={quizzList}/> : null}
       <footer>
         <p>Créé par des développeurs au TOP</p>

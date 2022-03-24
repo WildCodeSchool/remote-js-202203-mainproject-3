@@ -51,10 +51,13 @@ footer {
   padding: 20px;
   cursor: pointer;
   margin: 5px;
+  border: 1px solid #8D46B4;
+  margin-top: 30vh;
 }
 
 .containerQuizz {
   width: 70%;
+  min-height: 50vh;
   background-color: #00000091;
   border-radius: 12px;
   display: flex;
@@ -66,13 +69,90 @@ footer {
 .containerQuizzGlobal {
   display: flex;
   justify-content: center;
+  margin-top: 10vh;
 }
 
 .question {
   color: rgb(0, 0, 0);
   background-color: #E1C6A0;
   border-radius: 12px;
-  width: 70%;
+  width: 90%;
   padding: 12px 8px;
   border: 1px solid #8D46B4;
+  margin: 20px;
+}
+
+.reponse {
+  color: rgb(0, 0, 0);
+  background-color: #E1C6A0;
+  border-radius: 12px;
+  padding: 12px 8px;
+  border: 1px solid #8D46B4;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+}
+
+.containerQuizzCounter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%
+}
+
+.buttonHandleNext {
+  background-color: #E1C6A0;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 12px;
+  display: inline-block;
+  border-radius: 10px;
+  color: #000000;
+  text-align: center;
+  padding: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border: 1px solid #8D46B4;
+}
+
+.reponses{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.containerReponse {
+  width: 90%;
+}
+
+.buttonHome {
+  background-color: #E1C6A0;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 12px;
+  display: inline-block;
+  border-radius: 10px;
+  color: #000000;
+  text-align: center;
+  padding: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border: 1px solid #8D46B4;
+}
+
+.felicitation {
+  color: rgb(0, 0, 0);
+  background-color: #E1C6A0;
+  border-radius: 12px;
+  width: 90%;
+  padding: 12px 8px;
+  border: 1px solid #8D46B4;
+  margin: 20px;
+}
+
+.listResponse {
+  margin-top: 8px;
 }
