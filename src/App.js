@@ -25,7 +25,7 @@ function App() {
         <h1 className="title">The mystère Quizz</h1>
       </main>
       <button className="quizzButton"onClick={getQuizz}>Commencer le Quizz</button>
-        <Quizz quizzList={quizzList}/>
+        {quizzList.length !== 0 ? <Quizz quizzList={quizzList}/> : null}
       <footer>
         <p>Créé par des développeurs au TOP</p>
       </footer>
