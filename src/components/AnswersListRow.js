@@ -6,7 +6,7 @@ function AnswersListRow({ answer }){
     <div>
       <div className="question">
         <input type="checkbox" className="custom-control-input" name="634[]" value="answer_c"/>
-        <label className="custom-control-label lead">We use the operator '==' to test two objects are instanced from the same class and have same attributes and equal values.</label>
+        <label className="custom-control-label lead">.</label>
       </div>
     </div>      
   );
