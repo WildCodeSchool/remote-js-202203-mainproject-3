@@ -156,3 +156,18 @@ footer {
 .listResponse {
   margin-top: 8px;
 }
+
+.buttonHandleValidate {
+  background-color: #E1C6A0;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 12px;
+  display: inline-block;
+  border-radius: 10px;
+  color: #000000;
+  text-align: center;
+  padding: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border: 1px solid #8D46B4;
+}
