@@ -9,17 +9,21 @@ function Quizz({ quizzList }) {
   
   const [questionsList, setQuestionsList] = React.useState(quizzList[0].question);
   const [answersList, setAnswersList] = React.useState(quizzList[0].answers);
-  const [counter, setCounter] = React.useState(1);
+  const [counter, setCounter] = React.useState(0);
+
   
 
   
   function handleQuestion() {
     if (counter < 10){
+      
+      setQuestionsList(quizzList[counter +1].question);
+      setAnswersList(quizzList[counter +1].answers);
       setCounter(counter +1);
-      setQuestionsList(quizzList[counter].question);
-      setAnswersList(quizzList[counter].answers);
     } 
   }
+
+
 
   return (
     <section className="containerQuizzGlobal">
