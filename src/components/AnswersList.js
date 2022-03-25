@@ -1,71 +1,44 @@
 import React from 'react';
 
-// import AnswersListRow from './AnswersListRow';
-
 function AnswersList({ answers, quizzList, counter }) {
   console.log(quizzList);
 
   const checkboxOrRadio = (quizzList[counter].multiple_correct_answers === 'true') ? 'checkbox' : 'radio';
-  
   const [check, setCheck] = React.useState('');
-  const [answerA, setAnswerA] = React.useState('false');
-  const [answerB, setAnswerB] = React.useState('false');
-  const [answerC, setAnswerC] = React.useState('false');
-  const [answerD, setAnswerD] = React.useState('false');
-  const [answerE, setAnswerE] = React.useState('false');
-  const [answerF, setAnswerF] = React.useState('false');
 
-  
+  // Fonction de controle des réponses
   function controle(event){
+    // Initialisation des variables
+    let answerA= 'false';
+    let answerB= 'false';
+    let answerC= 'false';
+    let answerD= 'false';
+    let answerE= 'false';
+    let answerF= 'false';
+
+
     event.preventDefault();
+
+    // Affectation de la value 'true' suivant la réponse
     setCheck(event.target.value);
-    console.log(check);
-    console.log(check.target.id);
-    console.log(check.target.value);
-
-    // if (check.target.id === 'answer_a'){
-    //   setAnswerA('true');
-    // }
-
-    // Réinitialisation des states à false 
-    setAnswerA('false');
-    setAnswerB('false');
-    setAnswerC('false');
-    setAnswerD('false');
-    setAnswerE('false');
-    setAnswerF('false');
-
-
     switch(check.target.id){
-      case 'answer_a' : setAnswerA('true');
+      case 'answer_a' : answerA = 'true';
         break;
-      case 'answer_b' : setAnswerB('true');
+      case 'answer_b' : answerB ='true';
         break;
-      case 'answer_c' : setAnswerC('true');
+      case 'answer_c' : answerC ='true';
         break;
-      case 'answer_d' : setAnswerD('true');
+      case 'answer_d' : answerD ='true';
         break;
-      case 'answer_e' : setAnswerE('true');
+      case 'answer_e' : answerE ='true';
         break;
-      case 'answer_f' : setAnswerF('true');
+      case 'answer_f' : answerF ='true';
         break;
     }
-
-
-    console.log('A user:' + answerA);
-    console.log('A object:' + quizzList[counter].correct_answers.answer_a_correct);
-    console.log('B user:' + answerB);
-    console.log('B object:' + quizzList[counter].correct_answers.answer_b_correct);
-    console.log('C user:' + answerC);
-    console.log('C object:' + quizzList[counter].correct_answers.answer_c_correct);
-    console.log('D user:' + answerD);
-    console.log('D object:' + quizzList[counter].correct_answers.answer_d_correct);
-    console.log('E user:' + answerE);
-    console.log('E object:' + quizzList[counter].correct_answers.answer_e_correct);
-    console.log('F user:' + answerF);
-    console.log('F object:' + quizzList[counter].correct_answers.answer_f_correct);
-   
+    
+    //Stockage des réponses utilisateurs dans un tableau
     const tabAnswersUser = [answerA, answerB, answerC, answerD, answerE, answerF];
+    //Stockage des réponses objet dans un tableau
     const tabAnswers = [
       quizzList[counter].correct_answers.answer_a_correct,
       quizzList[counter].correct_answers.answer_b_correct,
@@ -73,15 +46,13 @@ function AnswersList({ answers, quizzList, counter }) {
       quizzList[counter].correct_answers.answer_d_correct,
       quizzList[counter].correct_answers.answer_e_correct,
       quizzList[counter].correct_answers.answer_f_correct];
-      
-      const resultTabAnswersUser = tabAnswersUser.map(answerUser => answerUser ? 'true' : 'false');
-    
-      if ( JSON.stringify(resultTabAnswersUser) == JSON.stringify(tabAnswers)){
+
+      // Comparaison des 2 tableaux
+      if ( JSON.stringify(tabAnswersUser) == JSON.stringify(tabAnswers)){
         console.log('WIN');
       }else{
         console.log('LOSE');
       }
-
   }
 
 
