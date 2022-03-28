@@ -1,36 +1,47 @@
 import React from 'react';
 import AnswersList from './AnswersList';
+import Results from './Results';
 
 
 
 function Quizz({ quizzList }) {
   
+  
+  const [questionsList, setQuestionsList] = React.useState(quizzList[0].question);
+  const [answersList, setAnswersList] = React.useState(quizzList[0].answers);
+  const [counter, setCounter] = React.useState(0);
+  
 
-  // const answers = quizzList.answers;
-  console.log(quizzList);
-  // console.log(answers);
-  // console.log(quizzList.length !== 0 ? quizzList.tags[0].name : quizzList.length);
-  console.log(quizzList.tags[0].name);
+  
+  function handleQuestion() {
+    //réaffichage du bouton validate
+    // const buttonValidateID = document.getElementById('buttonHandleValidateID');
+    // buttonValidateID.style.display = 'block';
 
-  // function answer2(){
-  //   // for (let answer in answers) {
-  //     //   console.log(`${answers[answer]}`);
-  //   }return (console.log('npoihzrs'));
-    
-  // }
+    // Reset le formulaire
+    document.getElementById('formCheck').reset();
+  
+    if (counter < 10){
+      setQuestionsList(quizzList[counter + 1].question);
+      setAnswersList(quizzList[counter + 1].answers);
+      setCounter(counter + 1);
+    } 
+  }
 
   return (
     <section className="containerQuizzGlobal">
-      <div className="containerQuizz">
-        <div>(Compteur)</div>
-        <h2 className= "question">{quizzList.question} 
-        {quizzList.category}/{quizzList.tags[0].name}/{quizzList.difficulty}
-        </h2>
-        {/* <p>{quizzList.length !== 0 ? answers.map(answer => answer.answers) : null}</p> */}
-        {/* <button onClick={answer2}>test</button> */}
-        <AnswersList answers={quizzList.answers}/>
+      <div className="containerQuizz">    
+        {(counter <10)? (
+        <div className="containerQuizzCounter">  
+          <h2 className= "question">
+            {questionsList} 
+          </h2>
+          <AnswersList answers={answersList} quizzList={ quizzList } counter={counter}/>
+          <button className="buttonHandleNext" onClick={handleQuestion}>Next</button>
+        </div>) : 
+        <Results />
+        }
       </div>
-      
     </section>
   );
 }

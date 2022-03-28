@@ -8,12 +8,7 @@ export class Answer {
   }
 
   checkAnswer() {
-    if (this.correct_answer) {
-        if (this.correct_answer === this.user_answer) {
-          return true;
-        }
-    }
-    return false;
+    return this.correct_answer && this.user_answer;
   }
 
 }

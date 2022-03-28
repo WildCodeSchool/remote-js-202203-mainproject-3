@@ -1,14 +1,14 @@
 import React from 'react';
 
-function AnswersListRow({ answer }){
+function AnswersListRow({ answer, checkboxOrRadio }){
   console.log(answer);
   return(
     <div>
-      <div className="question">
-        <input type="checkbox" className="custom-control-input" name="634[]" value="answer_c"/>
-        <label className="custom-control-label lead">.</label>
+      <div className="listResponse">
+        <input type={checkboxOrRadio} className='inputcheck' name="answers" id={answer.id} value='true'/>
+        <label htmlFor={answer.id} >{answer.answer}</label>
       </div>
-    </div>      
+</div>      
   );
 
 }

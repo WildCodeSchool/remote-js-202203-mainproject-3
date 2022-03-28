@@ -1,42 +1,66 @@
 import React from 'react';
-// import AnswersListRow from './AnswersListRow';
+import AnswersListRow from './AnswersListRow';
 
-function AnswersList({ answers }) {
-  console.log('Nous sommes dans AnswersList');
-  console.log(answers);
-  console.log(answers.answer_a);
+function AnswersList({ answers, quizzList, counter }) {
+  console.log(quizzList);
+
+  // const buttonValidateID = document.getElementById('buttonHandleValidateID');
+  const checkboxOrRadio = (answers.multiple_correct_answers === 'true') ? 'checkbox' : 'radio';
+  // const [check, setCheck] = React.useState('');
+  const answerRows = answers.map(answerRow => <AnswersListRow key={answerRow.id} answer={answerRow} checkboxOrRadio={checkboxOrRadio} />);
+
+
   return (
-    <div className="question">
-      <div>
-        <input type="checkbox" className="custom-control-input" name="634[]" value="answer_a"/>
-        <label className="custom-control-label lead">{answers.answer_a}</label>
-      </div>
-      <div>
-        <input type="checkbox" className="custom-control-input" name="634[]" value="answer_b"/>
-        <label className="custom-control-label lead">{answers.answer_b}</label>
-      </div>
-      {answers.answer_c ?
-      <div>
-        <input type="checkbox" className="custom-control-input" name="634[]" value="answer_c"/>
-        <label className="custom-control-label lead">{answers.answer_c}</label>
-      </div>: null}
-      {answers.answer_d ?
-      <div>
-        <input type="checkbox" className="custom-control-input" name="634[]" value="answer_d"/>
-        <label className="custom-control-label lead">{answers.answer_d}</label>
-      </div>: null}
-      {answers.answer_e ?
+    <section className='containerReponse'>
+        {/* Affichage plusieurs réponses possibles */}
         <div>
-        <input type="checkbox" className="custom-control-input" name="634[]" value="answer_e"/>
-        <label className="custom-control-label lead">{answers.answer_e}</label>
-      </div>: null}
-      {answers.answer_f ?
-        <div>
-        <input type="checkbox" className="custom-control-input" name="634[]" value="answer_f"/>
-        <label className="custom-control-label lead">{answers.answer_f}</label>
-      </div>: null}
-    </div>
+          <p>
+            <em>{(quizzList[counter].multiple_correct_answers) ? 'Plusieurs réponses possibles' : '' }</em>
+           </p>
+        </div>
+
+        {/* Affichage des réponses */}
+        <form className="reponse" id="formCheck" type='submit' method='get' action='/'>
+          {answerRows}
+          {/* <div className="listResponse">
+            < input type = {(quizzList[counter].multiple_correct_answers) ? 'checkbox' : 'radio'} name = "answers" className = "custom-control-input" id = 'answer_a' />
+            <label htmlFor="answer_a" className="custom-control-label lead">{answers[0].answer}</label>
+          </div>
+
+          <div className="listResponse">
+            <input type={ (quizzList[counter].multiple_correct_answers) ? 'checkbox' : 'radio' } name="answers" className="custom-control-input" id='answer_b'/>
+            <label htmlFor="answer_b" className="custom-control-label lead">{answers[1].answer}</label>
+          </div>
+
+          {answers.length > 2 ?
+          <div className="listResponse">
+            <input type={ (quizzList[counter].multiple_correct_answers) ? 'checkbox' : 'radio' } name="answers" className="custom-control-input" id='answer_c' value={(answers[2].correct_answer)}/>
+            <label htmlFor="answer_c" className="custom-control-label lead">{answers[2].answer}</label>
+          </div>: null}
+
+          {answers.length > 3 ?
+          <div className="listResponse">
+            <input type={ (quizzList[counter].multiple_correct_answers) ? 'checkbox' : 'radio' } name="answers" className="custom-control-input" id='answer_d' value={(answers[3].correct_answer)}/>
+            <label htmlFor="answer_d" className="custom-control-label lead">{answers[3].answer}</label>
+          </div>: null}
+
+          {answers.length > 4 ?
+            <div className="listResponse">
+              <input type={ (quizzList[counter].multiple_correct_answers) ? 'checkbox' : 'radio' } name="answers" className="custom-control-input" id='answer_e' value={(answers[4].correct_answer)}/>
+              <label htmlFor="answer_e" className="custom-control-label lead">{answers[4].answer}</label>
+            </div>: null}
+          
+          {answers.length > 5 ?
+            <div className="listResponse">
+              <input type={ (quizzList[counter].multiple_correct_answers) ? 'checkbox' : 'radio' } name="answers" className="custom-control-input" id='answer_f' value={(answers[5].correct_answer)}/>
+              <label htmlFor="answer_f" className="custom-control-label lead">{answers[5].answer}</label>
+            </div>: null} */}
+          <button id="buttonHandleValidateID" className="buttonHandleValidate">Validate</button> {/* onClick={() => controle(event)} */}
+      </form>
+    </section>
   );
+
 }
+
 
 export default AnswersList;
