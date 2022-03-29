@@ -21,6 +21,7 @@ function Quizz({ quizzList }) {
     let returnedTimerId = setInterval(() => setSecs((secs) => secs - 1), 1000);
     setTimerId(returnedTimerId);
   }, []);
+  
 
   //Permet d'arreter le compteur lorsque celui ci arrive a 0    
   if (secs <=0){
