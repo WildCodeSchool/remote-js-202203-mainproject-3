@@ -171,3 +171,25 @@ footer {
   margin-bottom: 20px;
   border: 1px solid #8D46B4;
 }
+
+.count_down {
+  color: rgb(0, 0, 0);
+  background-color: #8D46B4;
+  width: 5%;
+  border-radius: 12px;
+  border: 1px solid #8D46B4;
+  margin: 20px;
+}
+
+.container_count {
+  display: flex;
+  justify-self: space-between;
+  width: 90%;
+}
+
+.chrono {
+  font-size:20px;
+  font-weight: bold;
+  color:white;
+  margin: 8px;
+}
