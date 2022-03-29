@@ -23,15 +23,15 @@ function Quizz({ quizzList }) {
   }, []);
   
 
-  //Permet d'arreter le compteur lorsque celui ci arrive a 0    
-  if (secs <=0){
-    clearInterval(timerId);
-  }
-
+  //Permet d'arreter le compteur lorsque celui ci arrive a 0
+  if (counter < 10){
+    if (secs <=0){
+      clearInterval(timerId);
+      buttonValidateID.style.display = 'none';
+    }
+  }     
   //Fait disparaitre le bouton validé lorsque le compteur arrive a 0
-  if(secs <= 0){
-    buttonValidateID.style.display = 'none';
-  }
+  
 
   // Remet le compteur a 20 lorsque l'on appuis sur le bouton next  
   function handleReset() {
@@ -50,7 +50,7 @@ function Quizz({ quizzList }) {
     document.getElementById('formCheck').reset();
     console.log(counter);
     // Affiche les questions et réponses
-    if (counter < 9){
+    if (counter < 10){
       setQuestionsList(quizzList[counter +1].question);
       setAnswersList(quizzList[counter +1].answers);
       setCounter(counter +1);
@@ -62,7 +62,7 @@ function Quizz({ quizzList }) {
   return (
     <section className="containerQuizzGlobal">
       <div className="containerQuizz">
-        {(counter < 9)? (
+        {(counter < 10)? (
           <div className="containerQuizzShow">
             <div className="container_count">
               <div className='questionCounter'>
