@@ -6,6 +6,7 @@ import CountDownTimer from './CountDownTimer';
 
 
 function Quizz({ quizzList }) {
+ 
   
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
   const [questionsList, setQuestionsList] = React.useState(quizzList[0].question);
