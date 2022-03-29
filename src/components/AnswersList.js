@@ -1,13 +1,12 @@
 import React from 'react';
 
-function AnswersList({ answers, quizzList, counter }) {
+function AnswersList({ answers, quizzList, counter, resultCounter, setResultCounter}) {
   console.log(quizzList);
   // console.log(buttonValidateID);
   
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
   const checkboxOrRadio = (quizzList[counter].multiple_correct_answers === 'true') ? 'checkbox' : 'radio';
   const [check, setCheck] = React.useState('');
-  const [resultCounter, setResultCounter] = React.useState(1);
 
   
   // Fonction de controle des réponses
@@ -60,6 +59,7 @@ function AnswersList({ answers, quizzList, counter }) {
       }else{
         console.log('LOSE');
       }
+      console.log(resultCounter);
   }
 
 

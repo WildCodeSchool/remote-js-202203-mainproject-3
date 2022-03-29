@@ -11,6 +11,8 @@ function Quizz({ quizzList }) {
   const [answersList, setAnswersList] = React.useState(quizzList[0].answers);
   const [counter, setCounter] = React.useState(0);
   const [questionCounter, setQuestionCounter] = React.useState(1);
+  const [resultCounter, setResultCounter] = React.useState(1);
+
   
   function handleQuestion() {
     //réaffichage du bouton validate
@@ -24,7 +26,7 @@ function Quizz({ quizzList }) {
     document.getElementById('formCheck').reset();
 
     // Affiche les questions et réponses
-    if (counter < 10){
+    if (counter < 9){
       setQuestionsList(quizzList[counter +1].question);
       setAnswersList(quizzList[counter +1].answers);
       setCounter(counter +1);
@@ -40,15 +42,15 @@ function Quizz({ quizzList }) {
         <p>Question n° {questionCounter} / 10</p>
         <progress max="10" value={questionCounter}> </progress>
       </div>
-        {(counter <10)? (
+        {(counter < 9) ? (
         <div className="containerQuizzCounter">  
           <h2 className= "question">
             {questionsList} 
           </h2>
-          <AnswersList answers={answersList} quizzList={ quizzList } counter={counter} />
+          <AnswersList answers={answersList} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter}/>
           <button className="buttonHandleNext" onClick={handleQuestion}>Next</button>
         </div>) : 
-        <Results />
+        <Results resultCounter={resultCounter}/>
         }
       </div>
     </section>
