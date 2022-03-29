@@ -12,7 +12,7 @@ function Quizz({ quizzList }) {
   const [answersList, setAnswersList] = React.useState(quizzList[0].answers);
   const [counter, setCounter] = React.useState(0);
   const [questionCounter, setQuestionCounter] = React.useState(1);
-  const [resultCounter, setResultCounter] = React.useState(1);
+  const [resultCounter, setResultCounter] = React.useState(0);
   const [secs, setSecs] = React.useState(20);
   const [timerId, setTimerId] = React.useState();
 
