@@ -56,6 +56,16 @@ footer {
 }
 
 .containerQuizz {
+  width: 100%;
+  min-height: 50vh;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerQuizzShow{
   width: 70%;
   min-height: 50vh;
   background-color: #00000091;
@@ -170,4 +180,32 @@ footer {
   cursor: pointer;
   margin-bottom: 20px;
   border: 1px solid #8D46B4;
+}
+
+.questionCounter{
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.count_down {
+  color: rgb(0, 0, 0);
+  background-color: #8D46B4;
+  width: 5%;
+  border-radius: 12px;
+  border: 1px solid #8D46B4;
+  margin: 20px;
+}
+
+.container_count {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.chrono {
+  font-size:20px;
+  font-weight: bold;
+  color:white;
+  margin: 8px;
 }

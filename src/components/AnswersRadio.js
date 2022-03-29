@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AnswersRadio({ answers, quizzList, counter }){
+function AnswersRadio({ answers, quizzList, counter, resultCounter, setResultCounter }){
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
   const [check, setCheck] = React.useState('');
 
@@ -49,6 +49,7 @@ function AnswersRadio({ answers, quizzList, counter }){
 
      // Comparaison des 2 tableaux
       if ( JSON.stringify(tabAnswersUser) === JSON.stringify(tabAnswers)){
+        setResultCounter(resultCounter + 1);
         console.log('WIN');
       }else{
         console.log('LOSE');

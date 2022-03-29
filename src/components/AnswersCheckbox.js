@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AnswersCheckbox({ answers, quizzList, counter }){
+function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResultCounter }){
     const buttonValidateID = document.getElementById('buttonHandleValidateID');
     const [checkedA, setCheckedA] = React.useState('false');
     const [checkedB, setCheckedB] = React.useState('false');
@@ -37,6 +37,7 @@ function AnswersCheckbox({ answers, quizzList, counter }){
 
      // Comparaison des 2 tableaux
       if ( JSON.stringify(tabAnswersUser) == JSON.stringify(tabAnswers)){
+        setResultCounter(resultCounter + 1);
         console.log('WIN');
       }else{
         console.log('LOSE');
