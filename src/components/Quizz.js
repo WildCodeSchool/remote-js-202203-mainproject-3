@@ -11,6 +11,8 @@ function Quizz({ quizzList }) {
   const [questionsList, setQuestionsList] = React.useState(quizzList[0].question);
   const [answersList, setAnswersList] = React.useState(quizzList[0].answers);
   const [counter, setCounter] = React.useState(0);
+  const [questionCounter, setQuestionCounter] = React.useState(1);
+  const [resultCounter, setResultCounter] = React.useState(0);
   const [secs, setSecs] = React.useState(20);
   const [timerId, setTimerId] = React.useState();
 
@@ -19,6 +21,7 @@ function Quizz({ quizzList }) {
     let returnedTimerId = setInterval(() => setSecs((secs) => secs - 1), 1000);
     setTimerId(returnedTimerId);
   }, []);
+  
 
   //Permet d'arreter le compteur lorsque celui ci arrive a 0
   if (counter < 10){
@@ -39,12 +42,15 @@ function Quizz({ quizzList }) {
     //réaffichage du bouton validate
    
     buttonValidateID.style.display = 'block';
+    setQuestionCounter(questionCounter +1);
+
+
 
     // Reset le formulaire
     document.getElementById('formCheck').reset();
-console.log(counter);
+    console.log(counter);
     // Affiche les questions et réponses
-    if (counter < 10){
+    if (counter < 9){
       setQuestionsList(quizzList[counter +1].question);
       setAnswersList(quizzList[counter +1].answers);
       setCounter(counter +1);
@@ -59,17 +65,21 @@ console.log(counter);
         {(counter < 10)? (
           <div className="containerQuizzShow">
             <div className="container_count">
+              <div className='questionCounter'>
+                <p>Question n° {questionCounter} / 10</p>
+                <progress max="10" value={questionCounter}> </progress>
+              </div>
               <CountDownTimer secs={secs}/> 
             </div>   
             <div className="containerQuizzCounter">  
               <h2 className= "question">
                 {questionsList} 
               </h2>
-              <AnswersList answers={answersList} quizzList={ quizzList } counter={counter} />
+              <AnswersList answers={answersList} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter}/>
               <button className="buttonHandleNext" onClick={handleQuestion}>Next</button>
             </div>
           </div>) : 
-        <Results />
+        <Results resultCounter={resultCounter}/>
         }
       </div>
     </section>

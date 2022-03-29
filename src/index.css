@@ -182,6 +182,12 @@ footer {
   border: 1px solid #8D46B4;
 }
 
+.questionCounter{
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .count_down {
   color: rgb(0, 0, 0);
   background-color: #8D46B4;
@@ -193,7 +199,7 @@ footer {
 
 .container_count {
   display: flex;
-  justify-self: space-between;
+  justify-content: space-between;
   width: 90%;
 }
 

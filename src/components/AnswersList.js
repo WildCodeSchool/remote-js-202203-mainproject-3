@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AnswersList({ answers, quizzList, counter }) {
+function AnswersList({ answers, quizzList, counter, resultCounter, setResultCounter}) {
   console.log(quizzList);
   // console.log(buttonValidateID);
   
@@ -55,10 +55,11 @@ function AnswersList({ answers, quizzList, counter }) {
 
       // Comparaison des 2 tableaux
       if ( JSON.stringify(tabAnswersUser) == JSON.stringify(tabAnswers)){
-        console.log('WIN');
+        setResultCounter(resultCounter + 1);
       }else{
         console.log('LOSE');
       }
+      console.log(resultCounter);
   }
 
 
