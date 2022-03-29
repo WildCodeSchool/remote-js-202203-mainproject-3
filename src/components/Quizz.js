@@ -42,7 +42,7 @@ function Quizz({ quizzList }) {
 
     // Reset le formulaire
     document.getElementById('formCheck').reset();
-
+console.log(counter);
     // Affiche les questions et réponses
     if (counter < 10){
       setQuestionsList(quizzList[counter +1].question);
@@ -55,18 +55,20 @@ function Quizz({ quizzList }) {
 
   return (
     <section className="containerQuizzGlobal">
-      <div className="containerQuizz"> 
-      <div className="container_count">
-        <CountDownTimer secs={secs}/> 
-      </div>   
-        {(counter <10)? (
-        <div className="containerQuizzCounter">  
-          <h2 className= "question">
-            {questionsList} 
-          </h2>
-          <AnswersList answers={answersList} quizzList={ quizzList } counter={counter} />
-          <button className="buttonHandleNext" onClick={handleQuestion}>Next</button>
-        </div>) : 
+      <div className="containerQuizz">
+        {(counter < 9)? (
+          <div className="containerQuizzShow">
+            <div className="container_count">
+              <CountDownTimer secs={secs}/> 
+            </div>   
+            <div className="containerQuizzCounter">  
+              <h2 className= "question">
+                {questionsList} 
+              </h2>
+              <AnswersList answers={answersList} quizzList={ quizzList } counter={counter} />
+              <button className="buttonHandleNext" onClick={handleQuestion}>Next</button>
+            </div>
+          </div>) : 
         <Results />
         }
       </div>

@@ -56,6 +56,16 @@ footer {
 }
 
 .containerQuizz {
+  width: 100%;
+  min-height: 50vh;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerQuizzShow{
   width: 70%;
   min-height: 50vh;
   background-color: #00000091;
