@@ -11,7 +11,7 @@ function App() {
 
   const getQuizz = () => {
     axios
-      .get('https://quizapi.io/api/v1/questions?apiKey=8P8azHvLpClCBemACzANfCUvptPakrF6D4SNHyX8&limit=10')
+      .get('https://quizapi.io/api/v1/questions?apiKey=8P8azHvLpClCBemACzANfCUvptPakrF6D4SNHyX8&limit=11')
       .then((response)=> response.data)
       .then((data) =>
         setQuizzList(data),
