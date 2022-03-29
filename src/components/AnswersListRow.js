@@ -2,6 +2,7 @@ import React from 'react';
 
 function AnswersListRow({ answer, checkboxOrRadio }){
   console.log(answer);
+  console.log(checkboxOrRadio);
   return(
     <div>
       <div className="listResponse">

@@ -11,4 +11,4 @@ export class Answer {
     return this.correct_answer && this.user_answer;
   }
 
-}
+  }
