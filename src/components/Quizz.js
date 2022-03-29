@@ -50,7 +50,7 @@ function Quizz({ quizzList }) {
     document.getElementById('formCheck').reset();
     console.log(counter);
     // Affiche les questions et réponses
-    if (counter < 9){
+    if (counter < 10){
       setQuestionsList(quizzList[counter +1].question);
       setAnswersList(quizzList[counter +1].answers);
       setCounter(counter +1);
