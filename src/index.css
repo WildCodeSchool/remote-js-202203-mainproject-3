@@ -171,3 +171,10 @@ footer {
   margin-bottom: 20px;
   border: 1px solid #8D46B4;
 }
+
+.questionCounter{
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

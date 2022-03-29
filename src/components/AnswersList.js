@@ -7,6 +7,7 @@ function AnswersList({ answers, quizzList, counter }) {
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
   const checkboxOrRadio = (quizzList[counter].multiple_correct_answers === 'true') ? 'checkbox' : 'radio';
   const [check, setCheck] = React.useState('');
+  const [resultCounter, setResultCounter] = React.useState(1);
 
   
   // Fonction de controle des réponses
@@ -55,7 +56,7 @@ function AnswersList({ answers, quizzList, counter }) {
 
       // Comparaison des 2 tableaux
       if ( JSON.stringify(tabAnswersUser) == JSON.stringify(tabAnswers)){
-        console.log('WIN');
+        setResultCounter(resultCounter + 1);
       }else{
         console.log('LOSE');
       }
