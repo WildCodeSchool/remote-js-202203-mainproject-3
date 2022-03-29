@@ -2,14 +2,25 @@ import React from 'react';
 import AnswersListRow from './AnswersListRow';
 
 function AnswersList({ answers, quizzList, counter }) {
-  console.log(quizzList);
-  // console.log(buttonValidateID);
+  const question = quizzList[counter];
+  console.log(question);
+  console.log(answers);
   
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
-  const checkboxOrRadio = (answers.multiple_correct_answers) ? 'checkbox' : 'radio';
+  const checkboxOrRadio = (question.multiple_correct_answers) ? 'checkbox' : 'radio';
   const [check, setCheck] = React.useState('');
-  const answerRows = answers.map(answerRow => <AnswersListRow key={answerRow.id} answer={answerRow} checkboxOrRadio={checkboxOrRadio} />);
+  const answerRows = answers.map(answerRow => <AnswersListRow 
+                                                key={answerRow.id} 
+                                                answer={answerRow} 
+                                                checkboxOrRadio={checkboxOrRadio}
+                                                // isChecked={isChecked}
+                                                onAnswerId={handleAnswerId}/>);
 
+  function handleAnswerId(answerId) {
+    // console.log(answerId);
+    // console.log(question.correct_answer);
+    console.log(answerId === question.correct_answer);
+  }
   
   // Fonction de controle des réponses
   function controle(event){
@@ -61,8 +72,8 @@ function AnswersList({ answers, quizzList, counter }) {
   //     }else{
   //       console.log('LOSE');
   //     }
-  console.log(answers[0].checkAnswer());
-  console.log(answers[1].checkAnswer());
+  // console.log(answers[0].checkAnswer());
+  // console.log(answers[1].checkAnswer());
 }
 
 
