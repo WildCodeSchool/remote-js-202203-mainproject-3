@@ -20,15 +20,15 @@ function Quizz({ quizzList }) {
     setTimerId(returnedTimerId);
   }, []);
 
-  //Permet d'arreter le compteur lorsque celui ci arrive a 0    
-  if (secs <=0){
-    clearInterval(timerId);
-  }
-
+  //Permet d'arreter le compteur lorsque celui ci arrive a 0
+  if (counter < 10){
+    if (secs <=0){
+      clearInterval(timerId);
+      buttonValidateID.style.display = 'none';
+    }
+  }     
   //Fait disparaitre le bouton validé lorsque le compteur arrive a 0
-  if(secs <= 0){
-    buttonValidateID.style.display = 'none';
-  }
+  
 
   // Remet le compteur a 20 lorsque l'on appuis sur le bouton next  
   function handleReset() {
@@ -56,7 +56,7 @@ console.log(counter);
   return (
     <section className="containerQuizzGlobal">
       <div className="containerQuizz">
-        {(counter < 9)? (
+        {(counter < 10)? (
           <div className="containerQuizzShow">
             <div className="container_count">
               <CountDownTimer secs={secs}/> 
