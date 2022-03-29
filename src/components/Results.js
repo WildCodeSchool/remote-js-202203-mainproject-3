@@ -1,13 +1,6 @@
 import React from 'react';
 
-
-
 function Results(){
-
-
-
-
-
     return(
         <div>
             <h2 className="felicitation">Félicitations vous avez fini le test</h2>

@@ -5,7 +5,6 @@ import Results from './Results';
 
 
 function Quizz({ quizzList }) {
-  
  
   const [questionsList, setQuestionsList] = React.useState(quizzList[0].question);
   const [answersList, setAnswersList] = React.useState(quizzList[0].answers);
@@ -27,12 +26,10 @@ function Quizz({ quizzList }) {
     } 
   }
 
-
-
   return (
     <section className="containerQuizzGlobal">
       <div className="containerQuizz">    
-        {(counter <10)? (
+        {(counter < 10)? (
         <div className="containerQuizzCounter">  
           <h2 className= "question">
             {questionsList} 
