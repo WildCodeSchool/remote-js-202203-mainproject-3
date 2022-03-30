@@ -17,6 +17,7 @@ function Quizz({ quizzList }) {
   const [resultCounter, setResultCounter] = React.useState(0);
   const [secs, setSecs] = React.useState(20);
   const [timerId, setTimerId] = React.useState();
+  const [resultCurrentQuestion, setResultCurrentQuestion] = React.useState(null);
 
   //Mise en place du compteur pour pouvoir décrémenté toutes les secondes
   React.useEffect(() => {
@@ -56,6 +57,10 @@ function handleDisplayChrono() {
     setSecs(20);
   } 
 
+  // function handleResultCurrentQuestion(){
+    
+  // }
+
   function handleQuestion() {
     //réaffichage du bouton validate
    
@@ -63,6 +68,7 @@ function handleDisplayChrono() {
     buttonValidateID.style.display = 'block';
     containerCountDown.style.display = 'block';
     setQuestionCounter(questionCounter +1);
+    setResultCurrentQuestion('');
 
     // Reset le formulaire
     document.getElementById('formCheck').reset();
@@ -93,7 +99,7 @@ function handleDisplayChrono() {
               <h2 className= "question">
                 {questionsList} 
               </h2>
-              <AnswersList handleDisplayChrono={handleDisplayChrono} handleDisable={handleDisable} disable={disable} answers={answersList} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter}/>
+              <AnswersList handleDisplayChrono={handleDisplayChrono} handleDisable={handleDisable} disable={disable} answers={answersList} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter} setResultCurrentQuestion={setResultCurrentQuestion} resultCurrentQuestion={resultCurrentQuestion}/>
               <button id="buttonHandleNextId" className="buttonHandleNext" onClick={handleQuestion}>Next</button>
             </div>
           </div>) : 
