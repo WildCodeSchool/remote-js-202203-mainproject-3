@@ -1,8 +1,10 @@
 import React from 'react';
 
-function AnswersRadio({ answers, quizzList, counter, resultCounter, setResultCounter, handleDisplayChrono, handleDisable, disable }){
+function AnswersRadio({ answers, quizzList, counter, resultCounter, setResultCounter, handleDisplayChrono, handleDisable, disable, setResultCurrentQuestion, resultCurrentQuestion }){
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
   const [check, setCheck] = React.useState('');
+  
+  
   
     // Fonction de controle des réponses
     function controle(event){
@@ -38,7 +40,7 @@ function AnswersRadio({ answers, quizzList, counter, resultCounter, setResultCou
       }
 
       //Stockage des réponses utilisateurs dans un tableau
-      const tabAnswersUser = [answerA, answerB, answerC, answerD, answerE, answerF];
+      const tabAnswersUser =[answerA, answerB, answerC, answerD, answerE, answerF];
       //Stockage des réponses objet dans un tableau
       const tabAnswers = [
         quizzList[counter].correct_answers.answer_a_correct,
@@ -47,24 +49,26 @@ function AnswersRadio({ answers, quizzList, counter, resultCounter, setResultCou
         quizzList[counter].correct_answers.answer_d_correct,
         quizzList[counter].correct_answers.answer_e_correct,
         quizzList[counter].correct_answers.answer_f_correct];
-
-     // Comparaison des 2 tableaux
-      if ( JSON.stringify(tabAnswersUser) === JSON.stringify(tabAnswers)){
-        setResultCounter(resultCounter + 1);
-        console.log('WIN');
-      }else{
-        console.log('LOSE');
-      }
-
+        
+        // Comparaison des 2 tableaux
+        
+         if ( JSON.stringify(tabAnswersUser) === JSON.stringify(tabAnswers)){
+           setResultCounter(resultCounter + 1);
+           console.log('WIN');
+           setResultCurrentQuestion('Bonne réponse');
+         }else{
+           console.log('LOSE');
+           setResultCurrentQuestion('Mauvaise réponse');
+         }
     }
 
     return(    
     <div className='answersRadio'>
 
     {/* Affichage des réponses */}
-    <form className="reponse" id="formCheck" type='submit' method='get' action='/' onChange={(event) => setCheck(event)}>
+    <form className="reponse" id="formCheck" onSubmit={(event) => controle(event)} onChange={(event) => setCheck(event)}>
       <div className="listResponse">
-        <input type='radio' className='inputcheck' name="answers" id='answer_a' value='true' disabled={disable}/>
+        <input type='radio' className='inputcheck' name="answers" id='answer_a' value='true' disabled={disable} required/>
         <label htmlFor="answer_a" >{answers.answer_a}</label>
       </div>
 
@@ -97,9 +101,10 @@ function AnswersRadio({ answers, quizzList, counter, resultCounter, setResultCou
           <label htmlFor="answer_f">{answers.answer_f}</label>
         </div>: null}
         <div className="containerButtonValidate">
-          <button id="buttonHandleValidateID" className="buttonHandleValidate" onClick={(event) => controle(event)}>Validate</button>
+          <button type="submit" id="buttonHandleValidateID" className="buttonHandleValidate" >Validate</button>
         </div>
   </form>
+  <div>{resultCurrentQuestion}</div>
 </div>);
 }
 export default AnswersRadio;

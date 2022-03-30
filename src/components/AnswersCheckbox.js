@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResultCounter, handleDisplayChrono, handleDisable, disable }){
+function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResultCounter, handleDisplayChrono, handleDisable, disable, setResultCurrentQuestion, resultCurrentQuestion}){
     const buttonValidateID = document.getElementById('buttonHandleValidateID');
     const [checkedA, setCheckedA] = React.useState('false');
     const [checkedB, setCheckedB] = React.useState('false');
@@ -39,9 +39,11 @@ function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResult
      // Comparaison des 2 tableaux
       if ( JSON.stringify(tabAnswersUser) == JSON.stringify(tabAnswers)){
         setResultCounter(resultCounter + 1);
+        setResultCurrentQuestion('Bonne réponse');
         console.log('WIN');
       }else{
         console.log('LOSE');
+        setResultCurrentQuestion('Mauvaise réponse');
       }   
     }
     
@@ -57,7 +59,7 @@ function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResult
     </div>
 
     {/* Affichage des réponses */}
-    <form className="reponse" id="formCheck" type='submit' method='get' action='/'>
+    <form className="reponse" id="formCheck" type='submit' >
       <div className="listResponse">
         <input type="checkbox" className='inputcheck' name="answers" label='answer_a' value={checkedA} disabled={disable} onChange={handleChangeA}/>
         <label htmlFor="answer_a" >{answers.answer_a}</label>
@@ -95,6 +97,7 @@ function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResult
           <button id="buttonHandleValidateID" className="buttonHandleValidate" onClick={(event) => controle(event)}>Validate</button>
         </div>
   </form>
+  <div>{resultCurrentQuestion}</div>
 </div>);
 }
 export default AnswersCheckbox;
