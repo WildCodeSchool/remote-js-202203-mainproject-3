@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResultCounter }){
+function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResultCounter, handleDisplayChrono }){
     const buttonValidateID = document.getElementById('buttonHandleValidateID');
     const [checkedA, setCheckedA] = React.useState('false');
     const [checkedB, setCheckedB] = React.useState('false');
@@ -17,7 +17,7 @@ function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResult
     const handleChangeF = () => {setCheckedF('true');};
     
     function controle(event){
-
+    handleDisplayChrono();
     event.preventDefault();
 
     // Disparaitre le bouton validate

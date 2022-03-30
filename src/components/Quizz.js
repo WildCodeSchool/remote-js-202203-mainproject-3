@@ -8,6 +8,7 @@ import CountDownTimer from './CountDownTimer';
 function Quizz({ quizzList }) {
  
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
+  const containerCountDown = document.getElementById('count_downID');
   const [questionsList, setQuestionsList] = React.useState(quizzList[0].question);
   const [answersList, setAnswersList] = React.useState(quizzList[0].answers);
   const [counter, setCounter] = React.useState(0);
@@ -31,6 +32,11 @@ function Quizz({ quizzList }) {
     }
   }     
   
+function handleDisplayChrono() {
+  setSecs((secs)=>!secs);
+  containerCountDown.style.display = 'none';
+}
+
   // Remet le compteur a 20 lorsque l'on appuis sur le bouton next  
   function handleReset() {
     setSecs(20);
@@ -40,6 +46,7 @@ function Quizz({ quizzList }) {
     //réaffichage du bouton validate
    
     buttonValidateID.style.display = 'block';
+    containerCountDown.style.display = 'block';
     setQuestionCounter(questionCounter +1);
 
     // Reset le formulaire
@@ -71,7 +78,7 @@ function Quizz({ quizzList }) {
               <h2 className= "question">
                 {questionsList} 
               </h2>
-              <AnswersList answers={answersList} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter}/>
+              <AnswersList handleDisplayChrono={handleDisplayChrono} answers={answersList} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter}/>
               <button className="buttonHandleNext" onClick={handleQuestion}>Next</button>
             </div>
           </div>) : 
