@@ -5,21 +5,21 @@ export function GenerateURL () {
 
   let url = 'https://quizapi.io/api/v1/questions?apiKey=8P8azHvLpClCBemACzANfCUvptPakrF6D4SNHyX8&limit=11';
 
-  function setURL (event) {
-    console.log(event.target.value);
-  }
+  // function setURL (event) {
+  //   console.log(event.target.value);
+  // }
 
   function handleChangeCategory (target) {
     console.log(target.value);
   }
 
-  function handleChange (value) {
-    console.log(value);
+  function handleChange (target) {
+    console.log(target);
   }
 
   return (
     <div className="containerQuizzGlobal" id="generateURL">
-      <form className="reponse" id="formCheck" type='submit' method='get' action='/' onChange={(event) => setURL(event)}>
+      <form className="reponse" id="formCheck" type='submit' method='get' action='/'> {/* onChange={(event) => setURL(event)} */}
         <div>
         <div className="form-group">
           <label className="form-label">Difficulty </label>
