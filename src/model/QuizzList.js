@@ -1,21 +1,25 @@
 import { Question } from './Question';
 import { Answer } from './Answer';
 
-// export class QuizzList {
-//   constructor(quizzlist) {
-//       this.quizzlist = quizzlist;
-//       this.newquizzlist = [];
-//   }
-
 export function setNewQuizzList(quizzlist) {
+
   const newquizzlist = [];
   const list_qa = ['answer_a', 'answer_b', 'answer_c', 'answer_d', 'answer_e', 'answer_f'];
+
   for (const quizz of quizzlist) {
-    const question = new Question(quizz.id, quizz.question, quizz.category, quizz.tags[0].name,
-      quizz.difficulty, (quizz.multiple_correct_answers.toLowerCase() === 'true') ? true : false, quizz.correct_answer);
+    const question = new Question(
+      quizz.id,
+      quizz.question,
+      quizz.category,
+      quizz.difficulty,
+      (quizz.multiple_correct_answers.toLowerCase() === 'true') ? true : false,
+      quizz.correct_answer
+    );
+
     const answers = quizz.answers;
     const c_answers = quizz.correct_answers;
     let correct_answer = [];
+
     let i = 0;
     while (i < list_qa.length) {
       if (!answers[list_qa[i]]) { break; }
