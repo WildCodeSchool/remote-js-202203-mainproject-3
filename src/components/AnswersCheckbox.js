@@ -1,100 +1,120 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResultCounter, handleDisplayChrono, handleDisable, disable }){
-    const buttonValidateID = document.getElementById('buttonHandleValidateID');
-    const [checkedA, setCheckedA] = React.useState('false');
-    const [checkedB, setCheckedB] = React.useState('false');
-    const [checkedC, setCheckedC] = React.useState('false');
-    const [checkedD, setCheckedD] = React.useState('false');
-    const [checkedE, setCheckedE] = React.useState('false');
-    const [checkedF, setCheckedF] = React.useState('false');
+function AnswersCheckbox({
+                             answers,
+                             quizzList,
+                             setResultCounter,
+                             resultCounter,
+                             counter,
+                             handleDisplayChrono,
+                             handleDisable,
+                             disable
+                         }) {
 
-    const handleChangeA = () => {setCheckedA('true');};
-    const handleChangeB = () => {setCheckedB('true');};
-    const handleChangeC = () => {setCheckedC('true');};
-    const handleChangeD = () => {setCheckedD('true');};
-    const handleChangeE = () => {setCheckedE('true');};
-    const handleChangeF = () => {setCheckedF('true');};
-    
-    function controle(event){
-    handleDisplayChrono();
-    handleDisable();
-    event.preventDefault();
+    // FIXED : proposition de garder le state dans un seul objet
+    const [answerState, setAnswerState] = useState({});
 
-    // Disparaitre le bouton validate
-    buttonValidateID.style.display = 'none';
-
-    //Stockage des réponses utilisateurs dans un tableau
-    const tabAnswersUser = [checkedA, checkedB, checkedC, checkedD, checkedE, checkedF];
-
-    //Stockage des réponses objet dans un tableau
-    const tabAnswers = [
-    quizzList[counter].correct_answers.answer_a_correct,
-    quizzList[counter].correct_answers.answer_b_correct,
-    quizzList[counter].correct_answers.answer_c_correct,
-    quizzList[counter].correct_answers.answer_d_correct,
-    quizzList[counter].correct_answers.answer_e_correct,
-    quizzList[counter].correct_answers.answer_f_correct];
-
-     // Comparaison des 2 tableaux
-      if ( JSON.stringify(tabAnswersUser) == JSON.stringify(tabAnswers)){
-        setResultCounter(resultCounter + 1);
-        console.log('WIN');
-      }else{
-        console.log('LOSE');
-      }   
+    // FIXED : proposition de gérer le check au niveau du formulaire
+    function handleCheck(event) {
+        const newState = {...answerState};
+        newState[event.target.value] = event.target.checked;
+        console.log(newState);
+        setAnswerState(newState);
     }
-    
 
-    return(    
-    <div className='answersCheckbox'>
+    function controle(event) {
+        handleDisplayChrono();
+        handleDisable();
+        event.preventDefault();
 
-    {/* Affichage plusieurs réponses possibles */}
-    <div>
-      <p>
-        <em>Plusieurs réponses possibles :</em>
-       </p>
-    </div>
+        // Disparaitre le bouton validate
+        // buttonValidateID.style.display = 'none';
 
-    {/* Affichage des réponses */}
-    <form className="reponse" id="formCheck" type='submit' method='get' action='/'>
-      <div className="listResponse">
-        <input type="checkbox" className='inputcheck' name="answers" label='answer_a' value={checkedA} disabled={disable} onChange={handleChangeA}/>
-        <label htmlFor="answer_a" >{answers.answer_a}</label>
-      </div>
+        console.log(answerState);
 
-      <div className="listResponse">
-        <input type="checkbox" className='inputcheck' name="answers" label='answer_b' value={checkedB} disabled={disable} onChange={handleChangeB}/>
-        <label htmlFor="answer_b" >{answers.answer_b}</label>
-      </div>
+        // FIXME : pas besoin de tout l'objet quizzlist ici, juste l'élément actuellement affiché
+        const correctAnswers = {
+            answer_a: quizzList[counter].correct_answers.answer_a_correct.toLowerCase() === 'true',
+            answer_b: quizzList[counter].correct_answers.answer_b_correct.toLowerCase() === 'true',
+            answer_c: quizzList[counter].correct_answers.answer_c_correct.toLowerCase() === 'true',
+            answer_d: quizzList[counter].correct_answers.answer_d_correct.toLowerCase() === 'true',
+            answer_e: quizzList[counter].correct_answers.answer_e_correct.toLowerCase() === 'true',
+            answer_f: quizzList[counter].correct_answers.answer_f_correct.toLowerCase() === 'true'
+        };
 
-      {answers.answer_c ?
-      <div className="listResponse">
-        <input type="checkbox" className='inputcheck' name="answers" label='answer_c' value={checkedC} disabled={disable} onChange={handleChangeC}/>
-        <label htmlFor="answer_c" >{answers.answer_c}</label>
-      </div>: null}
+        // Vérification des bonnes réponses
+        let win = true;
+        for (const answerKey in correctAnswers) {
+            const useAnswer = (answerState[answerKey] == null) ? false : answerState[answerKey];
+            if (correctAnswers[answerKey] !== useAnswer) win = false;
+        }
 
-      {answers.answer_d ?
-      <div className="listResponse">
-        <input type="checkbox"className='inputcheck' name="answers" label='answer_d' value={checkedD} disabled={disable} onChange={handleChangeD}/>
-        <label htmlFor="answer_d" >{answers.answer_d}</label>
-      </div>: null}
+        if (win) {
+            setResultCounter(resultCounter + 1);
+            console.log('WIN');
+        } else {
+            console.log('LOSE');
+        }
+    }
 
-      {answers.answer_e ?
-        <div className="listResponse">
-          <input type="checkbox" className='inputcheck' name="answers" label='answer_e' value={checkedE} disabled={disable} onChange={handleChangeE}/>
-          <label htmlFor="answer_e" >{answers.answer_e}</label>
-        </div>: null}
-      
-      {answers.answer_f ?
-        <div className="listResponse">
-          <input type="checkbox" className='inputcheck' name="answers" label='answer_f' value={checkedF} disabled={disable} onChange={handleChangeF}/>
-          <label htmlFor="answer_f">{answers.answer_f}</label>
-        </div>: null}
-        <div className="containerButtonValidate">
-          <button id="buttonHandleValidateID" className="buttonHandleValidate" onClick={(event) => controle(event)}>Validate</button>
-        </div>
-  </form>
-</div>);
+
+    return (
+        <div className='answersCheckbox'>
+
+            {/* Affichage plusieurs réponses possibles */}
+            <div>
+                <p>
+                    <em>Plusieurs réponses possibles :</em>
+                </p>
+            </div>
+
+            {/* Affichage des réponses */}
+            <form className="reponse" id="formCheck" onSubmit={event => controle(event)}
+                  onChange={event => handleCheck(event)}>
+                <div className="listResponse">
+                    <input type="checkbox" className='inputcheck' name="answers" value="answer_a"
+                           disabled={disable}/>
+                    <label htmlFor="answer_a">{answers.answer_a}</label>
+                </div>
+
+                <div className="listResponse">
+                    <input type="checkbox" className='inputcheck' name="answers" value="answer_b"
+                           disabled={disable}/>
+                    <label htmlFor="answer_b">{answers.answer_b}</label>
+                </div>
+
+                {answers.answer_c ?
+                    <div className="listResponse">
+                        <input type="checkbox" className='inputcheck' name="answers" value='answer_c'
+                               disabled={disable}/>
+                        <label htmlFor="answer_c">{answers.answer_c}</label>
+                    </div> : null}
+
+                {answers.answer_d ?
+                    <div className="listResponse">
+                        <input type="checkbox" className='inputcheck' name="answers" value='answer_d'
+                               disabled={disable}/>
+                        <label htmlFor="answer_d">{answers.answer_d}</label>
+                    </div> : null}
+
+                {answers.answer_e ?
+                    <div className="listResponse">
+                        <input type="checkbox" className='inputcheck' name="answers" value='answer_e'
+                               disabled={disable}/>
+                        <label htmlFor="answer_e">{answers.answer_e}</label>
+                    </div> : null}
+
+                {answers.answer_f ?
+                    <div className="listResponse">
+                        <input type="checkbox" className='inputcheck' name="answers" value='answer_f'
+                               disabled={disable}/>
+                        <label htmlFor="answer_f">{answers.answer_f}</label>
+                    </div> : null}
+                <div className="containerButtonValidate">
+                    <button id="buttonHandleValidateID" type="submit" className="buttonHandleValidate">Validate</button>
+                </div>
+            </form>
+        </div>);
 }
+
 export default AnswersCheckbox;

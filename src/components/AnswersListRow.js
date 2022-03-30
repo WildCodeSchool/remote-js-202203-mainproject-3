@@ -1,5 +1,6 @@
 import React from 'react';
 
+// FIXME : composant à supprimer, non utilisé !
 function AnswersListRow({ answer }){
   console.log(answer);
   return(
