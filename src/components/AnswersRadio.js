@@ -1,13 +1,13 @@
 import React from 'react';
 
-function AnswersRadio({ answers, quizzList, counter, resultCounter, setResultCounter }){
+function AnswersRadio({ answers, quizzList, counter, resultCounter, setResultCounter, handleDisplayChrono }){
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
   const [check, setCheck] = React.useState('');
 
     // Fonction de controle des réponses
     function controle(event){
       console.log(check);
-
+      handleDisplayChrono();
       // Initialisation des variables
       let answerA= 'false';
       let answerB= 'false';
