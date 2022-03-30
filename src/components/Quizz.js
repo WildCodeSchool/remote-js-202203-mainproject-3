@@ -57,10 +57,6 @@ function handleDisplayChrono() {
     setSecs(20);
   } 
 
-  // function handleResultCurrentQuestion(){
-    
-  // }
-
   function handleQuestion() {
     //réaffichage du bouton validate
    

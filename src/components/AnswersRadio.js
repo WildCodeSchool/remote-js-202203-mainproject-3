@@ -56,7 +56,7 @@ function AnswersRadio({ answers, quizzList, counter, resultCounter, setResultCou
            setResultCounter(resultCounter + 1);
            console.log('WIN');
            setResultCurrentQuestion('Bonne réponse');
-         }else{
+          }else{
            console.log('LOSE');
            setResultCurrentQuestion('Mauvaise réponse');
          }

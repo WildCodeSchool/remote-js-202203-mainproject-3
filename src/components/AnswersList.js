@@ -8,8 +8,8 @@ function AnswersList({ answers, quizzList, counter, resultCounter, setResultCoun
 
     return (
       <section className='answers'>
-        {checkboxOrRadio === 'radio' ? <div className='answersRadio'><AnswersRadio disable={disable} handleDisable={handleDisable} handleDisplayChrono={handleDisplayChrono} answers={answers} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter} setResultCurrentQuestion={setResultCurrentQuestion} resultCurrentQuestion={resultCurrentQuestion}/></div> : null}
-        {checkboxOrRadio === 'checkbox' ? <div className='answersCheckbox'><AnswersCheckbox disable={disable} handleDisable={handleDisable} handleDisplayChrono={handleDisplayChrono} answers={answers} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter}/></div> : null}
+        {checkboxOrRadio === 'radio' ? <div className='answersRadio'><AnswersRadio disable={disable} handleDisable={handleDisable} handleDisplayChrono={handleDisplayChrono} answers={answers} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter} setResultCurrentQuestion={setResultCurrentQuestion} resultCurrentQuestion={resultCurrentQuestion} /> </div> : null}
+        {checkboxOrRadio === 'checkbox' ? <div className='answersCheckbox'><AnswersCheckbox disable={disable} handleDisable={handleDisable} handleDisplayChrono={handleDisplayChrono} answers={answers} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter} setResultCurrentQuestion={setResultCurrentQuestion} resultCurrentQuestion={resultCurrentQuestion} /> </div> : null}
       </section>
     ); 
   }

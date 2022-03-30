@@ -15,6 +15,9 @@ function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResult
     const handleChangeD = () => {setCheckedD('true');};
     const handleChangeE = () => {setCheckedE('true');};
     const handleChangeF = () => {setCheckedF('true');};
+
+    //Stockage des réponses utilisateurs dans un tableau
+    let tabAnswersUser = [checkedA, checkedB, checkedC, checkedD, checkedE, checkedF];
     
     function controle(event){
     handleDisplayChrono();
@@ -24,8 +27,7 @@ function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResult
     // Disparaitre le bouton validate
     buttonValidateID.style.display = 'none';
 
-    //Stockage des réponses utilisateurs dans un tableau
-    const tabAnswersUser = [checkedA, checkedB, checkedC, checkedD, checkedE, checkedF];
+    
 
     //Stockage des réponses objet dans un tableau
     const tabAnswers = [
@@ -59,7 +61,7 @@ function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResult
     </div>
 
     {/* Affichage des réponses */}
-    <form className="reponse" id="formCheck" type='submit' >
+    <form className="reponse" id="formCheck" type='submit' onSubmit={(event) => controle(event)}>
       <div className="listResponse">
         <input type="checkbox" className='inputcheck' name="answers" label='answer_a' value={checkedA} disabled={disable} onChange={handleChangeA}/>
         <label htmlFor="answer_a" >{answers.answer_a}</label>
@@ -94,7 +96,7 @@ function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResult
           <label htmlFor="answer_f">{answers.answer_f}</label>
         </div>: null}
         <div className="containerButtonValidate">
-          <button id="buttonHandleValidateID" className="buttonHandleValidate" onClick={(event) => controle(event)}>Validate</button>
+          <button id="buttonHandleValidateID" className="buttonHandleValidate" disabled={tabAnswersUser.every(answer => answer == 'false') ? true : false}>Validate</button>
         </div>
   </form>
   <div>{resultCurrentQuestion}</div>
