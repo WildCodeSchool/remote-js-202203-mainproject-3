@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResultCounter, handleDisplayChrono }){
+function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResultCounter, handleDisplayChrono, handleDisable, disable }){
     const buttonValidateID = document.getElementById('buttonHandleValidateID');
     const [checkedA, setCheckedA] = React.useState('false');
     const [checkedB, setCheckedB] = React.useState('false');
@@ -18,6 +18,7 @@ function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResult
     
     function controle(event){
     handleDisplayChrono();
+    handleDisable();
     event.preventDefault();
 
     // Disparaitre le bouton validate
@@ -58,36 +59,36 @@ function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResult
     {/* Affichage des réponses */}
     <form className="reponse" id="formCheck" type='submit' method='get' action='/'>
       <div className="listResponse">
-        <input type="checkbox" className='inputcheck' name="answers" label='answer_a' value={checkedA} onChange={handleChangeA}/>
+        <input type="checkbox" className='inputcheck' name="answers" label='answer_a' value={checkedA} disabled={disable} onChange={handleChangeA}/>
         <label htmlFor="answer_a" >{answers.answer_a}</label>
       </div>
 
       <div className="listResponse">
-        <input type="checkbox" className='inputcheck' name="answers" label='answer_b' value={checkedB} onChange={handleChangeB}/>
+        <input type="checkbox" className='inputcheck' name="answers" label='answer_b' value={checkedB} disabled={disable} onChange={handleChangeB}/>
         <label htmlFor="answer_b" >{answers.answer_b}</label>
       </div>
 
       {answers.answer_c ?
       <div className="listResponse">
-        <input type="checkbox" className='inputcheck' name="answers" label='answer_c' value={checkedC} onChange={handleChangeC}/>
+        <input type="checkbox" className='inputcheck' name="answers" label='answer_c' value={checkedC} disabled={disable} onChange={handleChangeC}/>
         <label htmlFor="answer_c" >{answers.answer_c}</label>
       </div>: null}
 
       {answers.answer_d ?
       <div className="listResponse">
-        <input type="checkbox"className='inputcheck' name="answers" label='answer_d' value={checkedD} onChange={handleChangeD}/>
+        <input type="checkbox"className='inputcheck' name="answers" label='answer_d' value={checkedD} disabled={disable} onChange={handleChangeD}/>
         <label htmlFor="answer_d" >{answers.answer_d}</label>
       </div>: null}
 
       {answers.answer_e ?
         <div className="listResponse">
-          <input type="checkbox" className='inputcheck' name="answers" label='answer_e' value={checkedE} onChange={handleChangeE}/>
+          <input type="checkbox" className='inputcheck' name="answers" label='answer_e' value={checkedE} disabled={disable} onChange={handleChangeE}/>
           <label htmlFor="answer_e" >{answers.answer_e}</label>
         </div>: null}
       
       {answers.answer_f ?
         <div className="listResponse">
-          <input type="checkbox" className='inputcheck' name="answers" label='answer_f' value={checkedF} onChange={handleChangeF}/>
+          <input type="checkbox" className='inputcheck' name="answers" label='answer_f' value={checkedF} disabled={disable} onChange={handleChangeF}/>
           <label htmlFor="answer_f">{answers.answer_f}</label>
         </div>: null}
         <div className="containerButtonValidate">
