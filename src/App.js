@@ -17,6 +17,7 @@ function App() {
         setQuizzList(data),
         );        
       document.getElementById('buttonBegin').remove();
+
   };
   
 

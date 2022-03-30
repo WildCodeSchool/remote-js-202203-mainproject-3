@@ -3,12 +3,13 @@ import AnswersList from './AnswersList';
 import Results from './Results';
 import CountDownTimer from './CountDownTimer';
 
-
-
 function Quizz({ quizzList }) {
  
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
+  // const formCheck = document.getElementById('formCheck');
+  const buttonHandleNextId = document.getElementById('buttonHandleNextId');
   const containerCountDown = document.getElementById('count_downID');
+  const [disable, setDisable] = React.useState(false);
   const [questionsList, setQuestionsList] = React.useState(quizzList[0].question);
   const [answersList, setAnswersList] = React.useState(quizzList[0].answers);
   const [counter, setCounter] = React.useState(0);
@@ -25,16 +26,29 @@ function Quizz({ quizzList }) {
   }, [counter]);
   
   //Permet d'arreter le compteur lorsque celui ci arrive a 0 tant qu'il y a encore des questions
-  if (counter < 10){
-    if (secs <= 0){
+  React.useEffect(()=> {
+    if (counter < 10 && secs <=0){
       clearInterval(timerId);
+      handleDisable();
       buttonValidateID.style.display = 'none';
+      buttonHandleNextId.style.display = 'block';
     }
-  }     
+  }, [secs]);
   
+ 
+ function handleDisable() {
+  setDisable(true);
+ } 
+
+ function handleDisableFalse () {
+  setDisable(false);
+ }
+
 function handleDisplayChrono() {
   setSecs((secs)=>!secs);
   containerCountDown.style.display = 'none';
+  buttonHandleNextId.style.display = 'block';
+  // formCheck.style.pointer = 'none';
 }
 
   // Remet le compteur a 20 lorsque l'on appuis sur le bouton next  
@@ -45,6 +59,7 @@ function handleDisplayChrono() {
   function handleQuestion() {
     //réaffichage du bouton validate
    
+    buttonHandleNextId.style.display = 'none';
     buttonValidateID.style.display = 'block';
     containerCountDown.style.display = 'block';
     setQuestionCounter(questionCounter +1);
@@ -58,7 +73,7 @@ function handleDisplayChrono() {
       setAnswersList(quizzList[counter +1].answers);
       setCounter(counter +1);
       handleReset();
-
+      handleDisableFalse();
     } 
   }
 
@@ -78,8 +93,8 @@ function handleDisplayChrono() {
               <h2 className= "question">
                 {questionsList} 
               </h2>
-              <AnswersList handleDisplayChrono={handleDisplayChrono} answers={answersList} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter}/>
-              <button className="buttonHandleNext" onClick={handleQuestion}>Next</button>
+              <AnswersList handleDisplayChrono={handleDisplayChrono} handleDisable={handleDisable} disable={disable} answers={answersList} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter}/>
+              <button id="buttonHandleNextId" className="buttonHandleNext" onClick={handleQuestion}>Next</button>
             </div>
           </div>) : 
         <Results resultCounter={resultCounter}/>

@@ -219,3 +219,7 @@ footer {
   justify-content: center;
   width: 100%;
 }
+
+#buttonHandleNextId {
+  display: none;
+}

@@ -10,7 +10,6 @@ function AnswersListRow({ answer }){
       </div>
     </div>      
   );
-
 }
 
 export default AnswersListRow;
