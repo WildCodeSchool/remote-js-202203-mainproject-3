@@ -7,7 +7,6 @@ import CountDownTimer from './CountDownTimer';
 
 function Quizz({ quizzList }) {
  
-  
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
   const [questionsList, setQuestionsList] = React.useState(quizzList[0].question);
   const [answersList, setAnswersList] = React.useState(quizzList[0].answers);
@@ -21,19 +20,17 @@ function Quizz({ quizzList }) {
   React.useEffect(() => {
     let returnedTimerId = setInterval(() => setSecs((secs) => secs - 1), 1000);
     setTimerId(returnedTimerId);
-  }, []);
+    clearInterval(timerId);
+  }, [counter]);
   
-
-  //Permet d'arreter le compteur lorsque celui ci arrive a 0
+  //Permet d'arreter le compteur lorsque celui ci arrive a 0 tant qu'il y a encore des questions
   if (counter < 10){
-    if (secs <=0){
+    if (secs <= 0){
       clearInterval(timerId);
       buttonValidateID.style.display = 'none';
     }
   }     
-  //Fait disparaitre le bouton validé lorsque le compteur arrive a 0
   
-
   // Remet le compteur a 20 lorsque l'on appuis sur le bouton next  
   function handleReset() {
     setSecs(20);
@@ -45,11 +42,9 @@ function Quizz({ quizzList }) {
     buttonValidateID.style.display = 'block';
     setQuestionCounter(questionCounter +1);
 
-
-
     // Reset le formulaire
     document.getElementById('formCheck').reset();
-    console.log(counter);
+
     // Affiche les questions et réponses
     if (counter < 10){
       setQuestionsList(quizzList[counter +1].question);

@@ -95,7 +95,9 @@ function AnswersRadio({ answers, quizzList, counter, resultCounter, setResultCou
           <input type='radio' className='inputcheck' name="answers" id='answer_f' value='true'/>
           <label htmlFor="answer_f">{answers.answer_f}</label>
         </div>: null}
-        <button id="buttonHandleValidateID" className="buttonHandleValidate" onClick={(event) => controle(event)}>Validate</button>
+        <div className="containerButtonValidate">
+          <button id="buttonHandleValidateID" className="buttonHandleValidate" onClick={(event) => controle(event)}>Validate</button>
+        </div>
   </form>
 </div>);
 }

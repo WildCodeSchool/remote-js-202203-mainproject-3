@@ -90,7 +90,9 @@ function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResult
           <input type="checkbox" className='inputcheck' name="answers" label='answer_f' value={checkedF} onChange={handleChangeF}/>
           <label htmlFor="answer_f">{answers.answer_f}</label>
         </div>: null}
-        <button id="buttonHandleValidateID" className="buttonHandleValidate" onClick={(event) => controle(event)}>Validate</button>
+        <div className="containerButtonValidate">
+          <button id="buttonHandleValidateID" className="buttonHandleValidate" onClick={(event) => controle(event)}>Validate</button>
+        </div>
   </form>
 </div>);
 }
