@@ -86,7 +86,7 @@ footer {
   color: rgb(0, 0, 0);
   background-color: #E1C6A0;
   border-radius: 12px;
-  width: 90%;
+  width: 100%;
   padding: 12px 8px;
   border: 1px solid #8D46B4;
   margin: 20px;
@@ -178,7 +178,7 @@ footer {
   text-align: center;
   padding: 8px;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-top: 12px;
   border: 1px solid #8D46B4;
 }
 
@@ -208,4 +208,14 @@ footer {
   font-weight: bold;
   color:white;
   margin: 8px;
+}
+
+.answers{
+  width: 100%;
+}
+
+.containerButtonValidate {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
