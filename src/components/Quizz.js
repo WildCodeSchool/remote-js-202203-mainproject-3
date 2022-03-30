@@ -37,7 +37,7 @@ function Quizz({ quizzList }) {
           <h2 className= "question">
             {questionsList} 
           </h2>
-          <AnswersList answers={answersList} quizzList={ quizzList } counter={counter} />
+          <AnswersList answers={answersList} question={ quizzList[counter] } />
           <button className="buttonHandleNext" onClick={handleQuestion}>Next</button>
         </div>) : 
         <Results />

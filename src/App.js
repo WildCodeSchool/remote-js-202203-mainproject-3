@@ -19,19 +19,6 @@ function App() {
       document.getElementById('buttonBegin').remove();
   };
 
-  // if (quizzList.length !== 0) {
-  //   // console.log(quizzList[0].correct_answers['answer_a_correct']);
-  //   if (typeof quizzList[0].multiple_correct_answers === 'string') {
-  //     const newQuizzList = new QuizzList(quizzList);
-  //     newQuizzList.setNewQuizzList();
-  //     setQuizzList(newQuizzList.newquizzlist);
-  //   }
-  //   // console.log(newQuizzList.newquizzlist[0]);
-  //   // console.log(newQuizzList.newquizzlist[0].answers[0]);
-  //   // console.log(newQuizzList.newquizzlist[0].answers[0].correct_answer);
-  // }
-  
-
   return (
     <div className="App">
       <main>
