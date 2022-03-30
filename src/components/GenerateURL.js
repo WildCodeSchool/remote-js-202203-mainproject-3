@@ -3,19 +3,40 @@ import React from 'react';
 
 export function GenerateURL () {
 
-  let url = 'https://quizapi.io/api/v1/questions?apiKey=8P8azHvLpClCBemACzANfCUvptPakrF6D4SNHyX8&limit=11';
-
   // function setURL (event) {
   //   console.log(event.target.value);
   // }
 
-  function handleChangeCategory (target) {
-    console.log(target.value);
+  const [difficulty, setDifficulty] = React.useState('any');
+  const [category, setCategory] = React.useState('any');
+  const [numberOfQuestion, setNumberOfQuestion] = React.useState(10);
+  const [tagsChoice, setTagsChoice] = React.useState('');
+
+  function getSelectedTags (options) {
+    let tags = '';
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].selected) {
+        (tags.length > 0) ? tags = tags + ',' : null;
+        tags = tags + options[i].value;
+      }
+    }
+    return tags;
   }
 
   function handleChange (target) {
-    console.log(target);
+    console.log(target.id, target.name, target.value);
+    switch (target.id) {
+      case 'difficulty' : setDifficulty(target.value);
+        break;
+      case 'category' : setCategory(target.value);
+        break;
+      case 'numberOfQuestion' : setNumberOfQuestion(target.value);
+        break;
+      case 'tagsChoice' : setTagsChoice(getSelectedTags(target.options));
+        break;
+    }
   }
+  console.log(tagsChoice);
 
   return (
     <div className="containerQuizzGlobal" id="generateURL">
@@ -32,7 +53,7 @@ export function GenerateURL () {
         </div>
         <br />
           <label className="form-label">Category </label>
-          <select id='category' className="" name="category" onChange={(event) => handleChangeCategory(event.target)}>
+          <select id='category' className="" name="category" onChange={(event) => handleChange(event.target)}>
             <option value="any">Any Category</option>
               <option value="linux">Linux</option>
               <option value="bash">Bash</option>
@@ -47,13 +68,13 @@ export function GenerateURL () {
         <br />
         <div className="form-group">
           <label className="form-label" htmlFor="nombreEntier">Number of questions </label>
-          <input id='questionNumber' type="number" name="nombreEntier" min="1" max="20" step="1"
+          <input id='numberOfQuestion' type="number" name="limit" min="1" max="20" step="1"
             defaultValue="10" onChange={(event) => handleChange(event.target)}/>
         </div>
         <p>
           <label className="form-label">Tags</label>
           <br />
-          <select id='tagsChoice' name="choixMultiple" size="11" multiple form="idFormulaire" 
+          <select id='tagsChoice' name="tags" size="11" multiple form="idFormulaire" 
             onChange={(event) => handleChange(event.target)}>
             <option value="html">HTML</option>
             <option value="javascript">JavaScript</option>
