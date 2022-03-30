@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Quizz from './components/Quizz';
+import { GenerateURL } from './components/GenerateURL';
 import axios from 'axios';
 
 
@@ -25,6 +26,8 @@ function App() {
       <main>
         <h1 className="title">The mystère Quizz</h1>
       </main>
+
+      <GenerateURL />
 
       <button className="quizzButton" onClick= {getQuizz} id='buttonBegin'>Commencer le Quizz</button>
         {quizzList.length !== 0 ? <Quizz quizzList={quizzList}/> : null}
