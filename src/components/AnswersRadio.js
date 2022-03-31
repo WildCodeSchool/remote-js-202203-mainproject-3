@@ -55,10 +55,10 @@ function AnswersRadio({ answers, quizzList, counter, resultCounter, setResultCou
          if ( JSON.stringify(tabAnswersUser) === JSON.stringify(tabAnswers)){
            setResultCounter(resultCounter + 1);
            console.log('WIN');
-           setResultCurrentQuestion('Bonne réponse');
-         }else{
+           setResultCurrentQuestion('Bonne réponse 🥂');
+          }else{
            console.log('LOSE');
-           setResultCurrentQuestion('Mauvaise réponse');
+           setResultCurrentQuestion('Mauvaise réponse 😭');
          }
     }
 
@@ -104,7 +104,9 @@ function AnswersRadio({ answers, quizzList, counter, resultCounter, setResultCou
           <button type="submit" id="buttonHandleValidateID" className="buttonHandleValidate" >Validate</button>
         </div>
   </form>
-  <div>{resultCurrentQuestion}</div>
+  <div className='container_current_question'>
+    <p className='current_question'>{resultCurrentQuestion}</p>
+    </div>
 </div>);
 }
 export default AnswersRadio;

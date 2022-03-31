@@ -223,3 +223,17 @@ footer {
 #buttonHandleNextId {
   display: none;
 }
+
+.current_question {
+  color: rgb(0, 0, 0);
+  background-color: #8D46B4;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #8D46B4;
+  margin: 20px;
+}
+
+.container_current_question{
+  display: flex;
+  justify-content: center;
+}
