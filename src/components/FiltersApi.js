@@ -11,7 +11,6 @@ export function FiltersApi ({ filtersApi, onChangeFilters }) {
   function handleFiltersApi (filtersApi) {
     onChangeFilters(filtersApi);
   }
-  console.log(filtersApi);
 
   function getSelectedTags (options) {
     let tags = '';
@@ -25,7 +24,6 @@ export function FiltersApi ({ filtersApi, onChangeFilters }) {
   }
 
   function handleChange (target) {
-    console.log(target.id, target.name, target.value);
     switch (target.id) {
       case 'difficulty' : filtersApi['difficulty'] = target.value;
         break;
@@ -36,13 +34,10 @@ export function FiltersApi ({ filtersApi, onChangeFilters }) {
       case 'tagsChoice' : filtersApi['tags'] = getSelectedTags(target.options);
         break;
     }
-    console.log(filtersApi);
   }
-  handleFiltersApi(filtersApi);
-  
 
   return (
-    <div className="containerQuizzGlobal" id="generateURL">
+    <div className="containerQuizzGlobal" id="filtersApi">
       <form className="reponse" id="formCheck" type='submit' method='get' action='/' onChange={() => handleFiltersApi(filtersApi)}> {/* onChange={(event) => setURL(event)} */}
         <div>
         <div className="form-group">
