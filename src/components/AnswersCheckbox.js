@@ -41,11 +41,11 @@ function AnswersCheckbox({ answers, quizzList, counter, resultCounter, setResult
      // Comparaison des 2 tableaux
       if ( JSON.stringify(tabAnswersUser) == JSON.stringify(tabAnswers)){
         setResultCounter(resultCounter + 1);
-        setResultCurrentQuestion('Bonne réponse');
+        setResultCurrentQuestion('Bonne réponse 🥂');
         console.log('WIN');
       }else{
         console.log('LOSE');
-        setResultCurrentQuestion('Mauvaise réponse');
+        setResultCurrentQuestion('Mauvaise réponse 😭');
       }   
     }
     
