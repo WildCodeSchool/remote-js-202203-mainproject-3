@@ -15,9 +15,7 @@ function App() {
       .then((response)=> response.data)
       .then((data) =>
         setQuizzList(data),
-        );        
-      document.getElementById('buttonBegin').remove();
-
+        );
   };
   
 
@@ -27,8 +25,8 @@ function App() {
         <h1 className="title">The mystère Quizz</h1>
       </main>
 
-      <button className="quizzButton" onClick= {getQuizz} id='buttonBegin'>Commencer le Quizz</button>
-        {quizzList.length !== 0 ? <Quizz quizzList={quizzList}/> : null}
+      {quizzList.length === 0 ? <button className="quizzButton" onClick={getQuizz} id='buttonBegin'>Commencer le Quizz</button> : null}
+      {quizzList.length > 0 ? <Quizz quizzList={quizzList}/> : null}
 
       <footer>
         <p>Créé par des développeurs au TOP</p>
