@@ -4,9 +4,9 @@ import Results from './Results';
 import CountDownTimer from './CountDownTimer';
 
 function Quizz({ quizzList }) {
+  console.log(quizzList);
  
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
-  // const formCheck = document.getElementById('formCheck');
   const buttonHandleNextId = document.getElementById('buttonHandleNextId');
   const containerCountDown = document.getElementById('count_downID');
   const [disable, setDisable] = React.useState(false);
@@ -19,11 +19,10 @@ function Quizz({ quizzList }) {
   const [timerId, setTimerId] = React.useState();
   const [resultCurrentQuestion, setResultCurrentQuestion] = React.useState(null);
 
-  //Mise en place du compteur pour pouvoir décrémenté toutes les secondes
+  //Mise en place du compteur pour pouvoir décrémenter toutes les secondes
   React.useEffect(() => {
     let returnedTimerId = setInterval(() => setSecs((secs) => secs - 1), 1000);
     setTimerId(returnedTimerId);
-    clearInterval(timerId);
   }, [counter]);
   
   //Permet d'arreter le compteur lorsque celui ci arrive a 0 tant qu'il y a encore des questions
@@ -95,7 +94,15 @@ function handleDisplayChrono() {
               <h2 className= "question">
                 {questionsList} 
               </h2>
-              <AnswersList handleDisplayChrono={handleDisplayChrono} handleDisable={handleDisable} disable={disable} answers={answersList} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter} setResultCurrentQuestion={setResultCurrentQuestion} resultCurrentQuestion={resultCurrentQuestion}/>
+              <AnswersList handleDisplayChrono={handleDisplayChrono} 
+              handleDisable={handleDisable} 
+              disable={disable} 
+              answers={answersList} 
+              currentQuestion={quizzList[counter]} 
+              resultCounter={resultCounter} 
+              setResultCounter={setResultCounter} 
+              setResultCurrentQuestion={setResultCurrentQuestion} 
+              resultCurrentQuestion={resultCurrentQuestion}/>
               <button id="buttonHandleNextId" className="buttonHandleNext" onClick={handleQuestion}>Next</button>
             </div>
           </div>) : 
