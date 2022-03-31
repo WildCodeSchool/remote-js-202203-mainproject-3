@@ -22,7 +22,8 @@ function App() {
   }
 
   function setFiltersUrl(filtersApi) {
-    let filters = '&limit=' + filtersApi.limit;
+    // #TODO: suppress +1 after correction to have 11 instead of 10
+    let filters = '&limit=' + (filtersApi.limit + 1);
     filtersApi.difficulty !== 'any' ? filters += '&difficulty=' + filtersApi.difficulty : null;
     filtersApi.category !== 'any' ? filters += '&category=' + filtersApi.category : '';
     filtersApi.tags !== '' ? filters += '&tags=' + filtersApi.tags : '';
