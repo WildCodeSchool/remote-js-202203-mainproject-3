@@ -1,16 +1,17 @@
 import React from 'react';
 
 
-export function GenerateURL () {
+export function FiltersApi ({ filtersApi, onChangeFilters }) {
 
-  // function setURL (event) {
-  //   console.log(event.target.value);
-  // }
+  // const [difficulty, setDifficulty] = React.useState('any');
+  // const [category, setCategory] = React.useState('any');
+  // const [numberOfQuestion, setNumberOfQuestion] = React.useState(10);
+  // const [tagsChoice, setTagsChoice] = React.useState('');
 
-  const [difficulty, setDifficulty] = React.useState('any');
-  const [category, setCategory] = React.useState('any');
-  const [numberOfQuestion, setNumberOfQuestion] = React.useState(10);
-  const [tagsChoice, setTagsChoice] = React.useState('');
+  function handleFiltersApi (filtersApi) {
+    onChangeFilters(filtersApi);
+  }
+  console.log(filtersApi);
 
   function getSelectedTags (options) {
     let tags = '';
@@ -26,21 +27,23 @@ export function GenerateURL () {
   function handleChange (target) {
     console.log(target.id, target.name, target.value);
     switch (target.id) {
-      case 'difficulty' : setDifficulty(target.value);
+      case 'difficulty' : filtersApi['difficulty'] = target.value;
         break;
-      case 'category' : setCategory(target.value);
+      case 'category' : filtersApi['category'] = target.value;
         break;
-      case 'numberOfQuestion' : setNumberOfQuestion(target.value);
+      case 'numberOfQuestion' : filtersApi['limit'] = parseInt(target.value);
         break;
-      case 'tagsChoice' : setTagsChoice(getSelectedTags(target.options));
+      case 'tagsChoice' : filtersApi['tags'] = getSelectedTags(target.options);
         break;
     }
+    console.log(filtersApi);
   }
-  console.log(tagsChoice);
+  handleFiltersApi(filtersApi);
+  
 
   return (
     <div className="containerQuizzGlobal" id="generateURL">
-      <form className="reponse" id="formCheck" type='submit' method='get' action='/'> {/* onChange={(event) => setURL(event)} */}
+      <form className="reponse" id="formCheck" type='submit' method='get' action='/' onChange={() => handleFiltersApi(filtersApi)}> {/* onChange={(event) => setURL(event)} */}
         <div>
         <div className="form-group">
           <label className="form-label">Difficulty </label>
@@ -55,14 +58,13 @@ export function GenerateURL () {
           <label className="form-label">Category </label>
           <select id='category' className="" name="category" onChange={(event) => handleChange(event.target)}>
             <option value="any">Any Category</option>
+              <option value="code">Code</option>
+              <option value="sql">SQL</option>
               <option value="linux">Linux</option>
               <option value="bash">Bash</option>
-              <option value="uncategorized">Uncategorized</option>
-              <option value="docker">Docker</option>
-              <option value="sql">SQL</option>
-              <option value="cms">CMS</option>
-              <option value="code">Code</option>
               <option value="devops">DevOps</option>
+              <option value="docker">Docker</option>
+              <option value="uncategorized">Uncategorized</option>
           </select>            
         </div>
         <br />
@@ -89,9 +91,6 @@ export function GenerateURL () {
             <option value="kubernetes">Kubernetes</option>
           </select>
         </p>
-        <div className="">
-          <button id="validChoices" className="buttonHome" type="submit">Confirm Choices</button>
-        </div>
       </form>
     </div>
   );
