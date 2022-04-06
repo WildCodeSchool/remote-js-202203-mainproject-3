@@ -4,16 +4,16 @@ function AnswersCheckbox({
   correction,
   handleCorrection,
   answers,
-  quizzList,
-  counter,
   resultCounter,
+  currentQuestion, 
   setResultCounter,
   handleDisplayChrono,
   handleDisable,
   disable,
   setResultCurrentQuestion,
-  resultCurrentQuestion
+  resultCurrentQuestion,
 }) {
+
     const buttonValidateID = document.getElementById('buttonHandleValidateID');
     const [checkedA, setCheckedA] = React.useState('false');
     const [checkedB, setCheckedB] = React.useState('false');
@@ -42,14 +42,14 @@ function AnswersCheckbox({
 
     
 
-    //Stockage des réponses objet dans un tableau
+    // //Stockage des réponses objet dans un tableau
     const tabAnswers = [
-    quizzList[counter].correct_answers.answer_a_correct,
-    quizzList[counter].correct_answers.answer_b_correct,
-    quizzList[counter].correct_answers.answer_c_correct,
-    quizzList[counter].correct_answers.answer_d_correct,
-    quizzList[counter].correct_answers.answer_e_correct,
-    quizzList[counter].correct_answers.answer_f_correct];
+    currentQuestion.correct_answers.answer_a_correct,
+    currentQuestion.correct_answers.answer_b_correct,
+    currentQuestion.correct_answers.answer_c_correct,
+    currentQuestion.correct_answers.answer_d_correct,
+    currentQuestion.correct_answers.answer_e_correct,
+    currentQuestion.correct_answers.answer_f_correct];
 
      // Comparaison des 2 tableaux
       if ( JSON.stringify(tabAnswersUser) == JSON.stringify(tabAnswers)){

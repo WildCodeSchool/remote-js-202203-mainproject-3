@@ -1,14 +1,36 @@
 import React from 'react';
 
-function AnswersRadio({  correction, handleCorrection, answers,  resultCounter, setResultCounter, handleDisplayChrono, handleDisable, disable, setResultCurrentQuestion, resultCurrentQuestion, tabAnswers }){
+
+function AnswersRadio({ 
+  correction, 
+  handleCorrection, 
+  currentQuestion, 
+  answers,  
+  resultCounter, 
+  setResultCounter, 
+  handleDisplayChrono, 
+  handleDisable, 
+  disable, 
+  setResultCurrentQuestion, 
+  resultCurrentQuestion
+ }) {
   
+
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
   const [check, setCheck] = React.useState('');
+
+    // //Stockage des réponses objet dans un tableau
+    const tabAnswers = [
+      currentQuestion.correct_answers.answer_a_correct,
+      currentQuestion.correct_answers.answer_b_correct,
+      currentQuestion.correct_answers.answer_c_correct,
+      currentQuestion.correct_answers.answer_d_correct,
+      currentQuestion.correct_answers.answer_e_correct,
+      currentQuestion.correct_answers.answer_f_correct];
   
-  console.log('correction in AnswerRadio: ' + correction);
-    
     // Fonction de controle des réponses
     function controle(event){
+
       handleDisplayChrono();
       handleDisable();
       // Initialisation des variables
@@ -41,8 +63,7 @@ function AnswersRadio({  correction, handleCorrection, answers,  resultCounter, 
 
       //Stockage des réponses utilisateurs dans un tableau
       const tabAnswersUser =[answerA, answerB, answerC, answerD, answerE, answerF];
-      
-      
+        
       // Comparaison des 2 tableaux      
       if ( JSON.stringify(tabAnswersUser) === JSON.stringify(tabAnswers)){
         setResultCounter(resultCounter + 1);
@@ -54,8 +75,7 @@ function AnswersRadio({  correction, handleCorrection, answers,  resultCounter, 
       }
       handleCorrection();
     }
-    
-    
+        
     return(    
     <div className='answersRadio'>
 
