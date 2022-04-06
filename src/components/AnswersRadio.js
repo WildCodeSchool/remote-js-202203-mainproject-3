@@ -115,7 +115,7 @@ function AnswersRadio({
           <label htmlFor="answer_f">{answers.answer_f}</label>
         </div>: null}
         <div className="containerButtonValidate">
-          <button type="submit" id="buttonHandleValidateID" className="buttonHandleValidate">Validate</button>
+          <button type="submit" id="buttonHandleValidateID" className="buttonHandleValidate">Valider</button>
         </div>
   </form>
 

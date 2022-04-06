@@ -37,22 +37,23 @@ export function FiltersApi ({ filtersApi, onChangeFilters }) {
   }
 
   return (
-    <div className="containerQuizzGlobal" id="filtersApi">
-      <form className="reponse" id="formCheck" type='submit' method='get' action='/' onChange={() => handleFiltersApi(filtersApi)}> {/* onChange={(event) => setURL(event)} */}
+    <div className="containerFormGlobal" >
+      <div className="containerForm" id="filtersApi">
+      <form className="formFilter" id="formCheck" type='submit' method='get' action='/' onChange={() => handleFiltersApi(filtersApi)}> {/* onChange={(event) => setURL(event)} */}
         <div>
         <div className="form-group">
-          <label className="form-label">Difficulty </label>
+          <label>Difficulté :</label>
           <select id='difficulty' className="" name="difficulty" onChange={(event) => handleChange(event.target)}>
-            <option value="any">Any Difficulty</option>
-              <option value="Easy">Easy</option>
-              <option value="Medium">Medium</option>
-              <option value="Hard">Hard</option>
+            <option value="any">Choix de Difficulté</option>
+              <option value="Easy">Facile</option>
+              <option value="Medium">Moyen</option>
+              <option value="Hard">Difficile</option>
           </select>
         </div>
-        <br />
-          <label className="form-label">Category </label>
+        <div className="form-group">
+          <label>Categorie :</label>
           <select id='category' className="" name="category" onChange={(event) => handleChange(event.target)}>
-            <option value="any">Any Category</option>
+            <option value="any">Choix de Categorie</option>
               <option value="code">Code</option>
               <option value="sql">SQL</option>
               <option value="linux">Linux</option>
@@ -62,15 +63,15 @@ export function FiltersApi ({ filtersApi, onChangeFilters }) {
               <option value="uncategorized">Uncategorized</option>
           </select>            
         </div>
-        <br />
-        <div className="form-group">
-          <label className="form-label" htmlFor="nombreEntier">Number of questions </label>
+          <div className="form-group">
+          <label htmlFor="nombreEntier">Nombres de questions:</label>
           <input id='numberOfQuestion' type="number" name="limit" min="1" max="20" step="1"
             defaultValue="10" onChange={(event) => handleChange(event.target)}/>
         </div>
-        <p>
-          <label className="form-label">Tags</label>
-          <br />
+        </div>
+        
+        <div className="form_tags_choice">
+               <label className="form-label">Tags</label>
           <select id='tagsChoice' name="tags" size="11" multiple form="idFormulaire" 
             onChange={(event) => handleChange(event.target)}>
             <option value="html">HTML</option>
@@ -85,8 +86,10 @@ export function FiltersApi ({ filtersApi, onChangeFilters }) {
             <option value="docker">Docker</option>
             <option value="kubernetes">Kubernetes</option>
           </select>
-        </p>
+        </div>
       </form>
     </div>
+    </div>
+    
   );
 }

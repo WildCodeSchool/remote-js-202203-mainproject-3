@@ -5,7 +5,7 @@ import CountDownTimer from './CountDownTimer';
 
 function Quizz({ quizzList }) {
   console.log(quizzList);
- 
+
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
   const buttonHandleNextId = document.getElementById('buttonHandleNextId');
   const containerCountDown = document.getElementById('count_downID');
@@ -89,7 +89,8 @@ function handleDisplayChrono() {
       handleReset();
       handleDisableFalse();
     } 
-  }
+    
+    }
 
   return (
     <section className="containerQuizzGlobal">
@@ -98,7 +99,7 @@ function handleDisplayChrono() {
           <div className="containerQuizzShow">
             <div className="container_count">
               <div className='questionCounter'>
-                <p>Question n° {questionCounter} / 10</p>
+                <p>Question n° {questionCounter} / {quizzList.length - 1}</p>
                 <progress max="10" value={questionCounter}> </progress>
               </div>
               <CountDownTimer secs={secs}/> 
@@ -107,6 +108,10 @@ function handleDisplayChrono() {
               <h2 className= "question">
                 {questionsList} 
               </h2>
+              <div className="precision">
+                  <h3>Difficulté : {quizzList[counter].difficulty.length > 0 ? quizzList[counter].difficulty : ''}</h3>
+                  <h3>Catégorie : {quizzList[counter].tags[0].name.length > 0 ? quizzList[counter].tags[0].name : ''}</h3>
+              </div>
               <AnswersList 
               handleDisplayChrono={handleDisplayChrono} 
               handleDisable={handleDisable}
@@ -119,7 +124,7 @@ function handleDisplayChrono() {
               resultCurrentQuestion={resultCurrentQuestion} 
               handleCorrection={handleCorrection}
               correction={correction}/>
-              <button id="buttonHandleNextId" className="buttonHandleNext" onClick={handleQuestion}>Next</button>
+              <button id="buttonHandleNextId" className="buttonHandleNext" onClick={handleQuestion}>Suivant</button>
             </div>
           </div>) : 
         <Results resultCounter={resultCounter}/>

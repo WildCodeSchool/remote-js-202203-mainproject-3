@@ -58,7 +58,7 @@ function App() {
         <div className="question containerQuizzCounter">
           Pas de questions trouvées, désélectionnez les filtres actuels et essayez avec d&lsquo;autres ou actualisez la page </div> : null}
         
-      {quizzList.length > 0 ? <Quizz quizzList={quizzList}/> : null}
+      {quizzList.length > 0 ? <Quizz quizzList={quizzList} /> : null}
 
       <footer>
         <p>Créé par des développeurs au TOP</p>
