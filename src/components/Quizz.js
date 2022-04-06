@@ -18,6 +18,14 @@ function Quizz({ quizzList }) {
   const [secs, setSecs] = React.useState(20);
   const [timerId, setTimerId] = React.useState();
   const [resultCurrentQuestion, setResultCurrentQuestion] = React.useState(null);
+  const [correction, setCorrection] = React.useState([]);
+  const tabAnswers = [
+   quizzList[counter].correct_answers.answer_a_correct,
+   quizzList[counter].correct_answers.answer_b_correct,
+   quizzList[counter].correct_answers.answer_c_correct,
+   quizzList[counter].correct_answers.answer_d_correct,
+   quizzList[counter].correct_answers.answer_e_correct,
+   quizzList[counter].correct_answers.answer_f_correct];
 
   //Mise en place du compteur pour pouvoir décrémenté toutes les secondes
   React.useEffect(() => {
@@ -31,12 +39,17 @@ function Quizz({ quizzList }) {
     if (counter < 10 && secs <=0){
       clearInterval(timerId);
       handleDisable();
-      buttonValidateID.style.display = 'none';
+      buttonValidateID.style.display = 'none'; 
       buttonHandleNextId.style.display = 'block';
     }
   }, [secs]);
   
- 
+   
+ function handleCorrection(){
+     //Stockage des réponses objet dans un tableau
+  setCorrection(tabAnswers.map( answer => answer === 'true' ? 'vert' : 'rouge'));
+}
+
  function handleDisable() {
   setDisable(true);
  } 
@@ -59,12 +72,12 @@ function handleDisplayChrono() {
 
   function handleQuestion() {
     //réaffichage du bouton validate
-   
     buttonHandleNextId.style.display = 'none';
     buttonValidateID.style.display = 'block';
     containerCountDown.style.display = 'block';
     setQuestionCounter(questionCounter +1);
-    setResultCurrentQuestion('');
+    setResultCurrentQuestion(null);
+    setCorrection([]);
 
     // Reset le formulaire
     document.getElementById('formCheck').reset();
@@ -95,7 +108,20 @@ function handleDisplayChrono() {
               <h2 className= "question">
                 {questionsList} 
               </h2>
-              <AnswersList handleDisplayChrono={handleDisplayChrono} handleDisable={handleDisable} disable={disable} answers={answersList} quizzList={ quizzList } counter={counter} resultCounter={resultCounter} setResultCounter={setResultCounter} setResultCurrentQuestion={setResultCurrentQuestion} resultCurrentQuestion={resultCurrentQuestion}/>
+              <AnswersList 
+              handleDisplayChrono={handleDisplayChrono} 
+              handleDisable={handleDisable}
+              disable={disable} 
+              answers={answersList}
+              quizzList={ quizzList } 
+              counter={counter} 
+              resultCounter={resultCounter} 
+              setResultCounter={setResultCounter}
+              setResultCurrentQuestion={setResultCurrentQuestion} 
+              resultCurrentQuestion={resultCurrentQuestion} 
+              handleCorrection={handleCorrection}
+              correction={correction}
+              tabAnswers={tabAnswers}/>
               <button id="buttonHandleNextId" className="buttonHandleNext" onClick={handleQuestion}>Next</button>
             </div>
           </div>) : 

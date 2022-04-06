@@ -55,6 +55,12 @@ footer {
   margin-top: 30vh;
 }
 
+.quizzButton:hover {
+  background-color: #8D46B4;
+  color: #ffffff;
+  border: 1px solid #E1C6A0;
+}
+
 .containerQuizz {
   width: 100%;
   min-height: 50vh;
@@ -128,6 +134,12 @@ footer {
   border: 1px solid #8D46B4;
 }
 
+.buttonHandleNext:hover {
+  background-color: #8D46B4;
+  color: #ffffff;
+  border: 1px solid #E1C6A0;
+}
+
 .reponses{
   display: flex;
   flex-direction: column;
@@ -163,10 +175,6 @@ footer {
   margin: 20px;
 }
 
-.listResponse {
-  margin-top: 8px;
-}
-
 .buttonHandleValidate {
   background-color: #E1C6A0;
   font-size: 16px;
@@ -180,6 +188,12 @@ footer {
   cursor: pointer;
   margin-top: 12px;
   border: 1px solid #8D46B4;
+}
+
+.buttonHandleValidate:hover {
+  background-color: #8D46B4;
+  color: #ffffff;
+  border: 1px solid #E1C6A0;
 }
 
 .questionCounter{
@@ -225,7 +239,7 @@ footer {
 }
 
 .current_question {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   background-color: #8D46B4;
   padding: 12px;
   border-radius: 12px;
@@ -236,4 +250,14 @@ footer {
 .container_current_question{
   display: flex;
   justify-content: center;
+}
+
+.vert {
+  color: rgb(76, 175, 80);
+  font-weight: bold;
+}
+
+.rouge {
+  color: rgb(244, 67, 54);
+  font-weight: bold;
 }
