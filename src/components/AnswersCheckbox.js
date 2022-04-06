@@ -111,7 +111,7 @@ function AnswersCheckbox({
           <label htmlFor="answer_f">{answers.answer_f}</label>
         </div>: null}
         <div className="containerButtonValidate">
-          <button id="buttonHandleValidateID" className="buttonHandleValidate" disabled={tabAnswersUser.every(answer => answer == 'false') ? true : false}>Validate</button>
+          <button id="buttonHandleValidateID" className="buttonHandleValidate" disabled={tabAnswersUser.every(answer => answer == 'false') ? true : false}>Valider</button>
         </div>
   </form>
   {(resultCurrentQuestion === null)? null
