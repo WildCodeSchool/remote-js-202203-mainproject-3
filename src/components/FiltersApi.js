@@ -3,11 +3,6 @@ import React from 'react';
 
 export function FiltersApi ({ filtersApi, onChangeFilters }) {
 
-  // const [difficulty, setDifficulty] = React.useState('any');
-  // const [category, setCategory] = React.useState('any');
-  // const [numberOfQuestion, setNumberOfQuestion] = React.useState(10);
-  // const [tagsChoice, setTagsChoice] = React.useState('');
-
   function handleFiltersApi (filtersApi) {
     onChangeFilters(filtersApi);
   }

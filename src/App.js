@@ -4,8 +4,6 @@ import Quizz from './components/Quizz';
 import { FiltersApi } from './components/FiltersApi';
 import axios from 'axios';
 
-
-
 function App() {
 
   const urlBase = 'https://quizapi.io/api/v1/questions?apiKey=8P8azHvLpClCBemACzANfCUvptPakrF6D4SNHyX8';
@@ -17,8 +15,6 @@ function App() {
 
   function handleFiltersApi(filtersApi) {
     setFiltersApi(filtersApi);
-    // console.log(filtersApi);
-    // console.log(setFiltersUrl(filtersApi));
   }
 
   function setFiltersUrl(filtersApi) {
@@ -41,15 +37,13 @@ function App() {
         );
   };
 
+  console.log(quizzList);
+
   return (
     <div className="App">
       <main>
         <h1 className="title">The mystère Quizz</h1>
       </main>
-      
-
-      {/* {urlQuizApi === urlBase ? */}
-
       {quizzList.length === 0 ? 
         <div><FiltersApi filtersApi={filtersApi} onChangeFilters={handleFiltersApi} />
           <button className="quizzButton" onClick={getQuizz} id='buttonBegin'>Commencer le Quizz</button></div> : null}
