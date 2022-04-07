@@ -3,7 +3,7 @@ import AnswersList from './AnswersList';
 import Results from './Results';
 import CountDownTimer from './CountDownTimer';
 
-function Quizz({ quizzList }) {
+function Quizz({ quizzList, setQuizzList }) {
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
   const buttonHandleNextId = document.getElementById('buttonHandleNextId');
   const containerCountDown = document.getElementById('count_downID');
@@ -124,7 +124,7 @@ function handleDisplayChrono() {
               <button id="buttonHandleNextId" className="buttonHandleNext" onClick={handleQuestion}>Suivant</button>
             </div>
           </div>) : 
-        <Results resultCounter={resultCounter} counter={counter}/>
+        <Results resultCounter={resultCounter} counter={counter} setQuizzList={setQuizzList} quizzList={quizzList}/>
         }
       </div>
     </section>
