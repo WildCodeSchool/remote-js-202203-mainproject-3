@@ -40,8 +40,6 @@ function AnswersCheckbox({
     // Disparaitre le bouton validate
     buttonValidateID.style.display = 'none';
 
-    
-
     // //Stockage des réponses objet dans un tableau
     const tabAnswers = [
     currentQuestion.correct_answers.answer_a_correct,
@@ -55,9 +53,7 @@ function AnswersCheckbox({
       if ( JSON.stringify(tabAnswersUser) == JSON.stringify(tabAnswers)){
         setResultCounter(resultCounter + 1);
         setResultCurrentQuestion('Bonne réponse 🥂');
-        console.log('WIN');
       }else{
-        console.log('LOSE');
         setResultCurrentQuestion('Mauvaise réponse 😭');
       }   
       handleCorrection();

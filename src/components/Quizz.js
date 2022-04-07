@@ -4,8 +4,6 @@ import Results from './Results';
 import CountDownTimer from './CountDownTimer';
 
 function Quizz({ quizzList }) {
-  console.log(quizzList);
-
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
   const buttonHandleNextId = document.getElementById('buttonHandleNextId');
   const containerCountDown = document.getElementById('count_downID');
@@ -35,7 +33,7 @@ function Quizz({ quizzList }) {
   
   //Permet d'arreter le compteur lorsque celui ci arrive a 0 tant qu'il y a encore des questions
   React.useEffect(()=> {
-    if (counter < 10 && secs <=0){
+    if (counter < (quizzList.length - 1) && secs <=0){
       clearInterval(timerId);
       handleDisable();
       buttonValidateID.style.display = 'none'; 
@@ -61,7 +59,6 @@ function handleDisplayChrono() {
   setSecs((secs)=>!secs);
   containerCountDown.style.display = 'none';
   buttonHandleNextId.style.display = 'block';
-  // formCheck.style.pointer = 'none';
 }
 
   // Remet le compteur a 20 lorsque l'on appuis sur le bouton next  
@@ -82,7 +79,7 @@ function handleDisplayChrono() {
     document.getElementById('formCheck').reset();
 
     // Affiche les questions et réponses
-    if (counter < 10){
+    if (counter < quizzList.length -1){
       setQuestionsList(quizzList[counter +1].question);
       setAnswersList(quizzList[counter +1].answers);
       setCounter(counter +1);
@@ -95,12 +92,12 @@ function handleDisplayChrono() {
   return (
     <section className="containerQuizzGlobal">
       <div className="containerQuizz">
-        {(counter < 10)? (
+        {(counter < quizzList.length -1)? (
           <div className="containerQuizzShow">
             <div className="container_count">
               <div className='questionCounter'>
                 <p>Question n° {questionCounter} / {quizzList.length - 1}</p>
-                <progress max="10" value={questionCounter}> </progress>
+                <progress max={quizzList.length - 1} value={questionCounter}> </progress>
               </div>
               <CountDownTimer secs={secs}/> 
             </div>   
@@ -127,7 +124,7 @@ function handleDisplayChrono() {
               <button id="buttonHandleNextId" className="buttonHandleNext" onClick={handleQuestion}>Suivant</button>
             </div>
           </div>) : 
-        <Results resultCounter={resultCounter}/>
+        <Results resultCounter={resultCounter} counter={counter}/>
         }
       </div>
     </section>
