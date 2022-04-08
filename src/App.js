@@ -4,21 +4,16 @@ import Quizz from './components/Quizz';
 import { FiltersApi } from './components/FiltersApi';
 import axios from 'axios';
 
-
-
 function App() {
 
   const urlBase = 'https://quizapi.io/api/v1/questions?apiKey=8P8azHvLpClCBemACzANfCUvptPakrF6D4SNHyX8';
   const currentFilters = {difficulty: 'any', category: 'any', limit: 10, tags: ''};
   const [filtersApi, setFiltersApi]  = React.useState(currentFilters);
-  const [urlQuizApi, setUrlQuizApi]  = React.useState(urlBase);
 
   const [quizzList, setQuizzList] = React.useState([]);
 
   function handleFiltersApi(filtersApi) {
     setFiltersApi(filtersApi);
-    // console.log(filtersApi);
-    // console.log(setFiltersUrl(filtersApi));
   }
 
   function setFiltersUrl(filtersApi) {
@@ -29,16 +24,19 @@ function App() {
     filtersApi.tags !== '' ? filters += '&tags=' + filtersApi.tags : '';
     return filters;
   }
-
   
   const getQuizz = () => {
-    setUrlQuizApi(urlBase + setFiltersUrl(filtersApi));
     axios
       .get(urlBase + setFiltersUrl(filtersApi))
       .then((response)=> response.data)
       .then((data) =>
         setQuizzList(data),
-        );
+        )
+      .catch(error => {
+        console.log(error.response);
+        setQuizzList(error.response.status);
+        setFiltersApi(currentFilters);
+       });
   };
 
   return (
@@ -51,12 +49,18 @@ function App() {
       {/* {urlQuizApi === urlBase ? */}
 
       {quizzList.length === 0 ? 
-        <div><FiltersApi filtersApi={filtersApi} onChangeFilters={handleFiltersApi} />
-          <button className="quizzButton" onClick={getQuizz} id='buttonBegin'>Commencer le Quizz</button></div> : null}
+        <div>
+          <FiltersApi filtersApi={filtersApi} onChangeFilters={handleFiltersApi} />
+          <button className="quizzButton" onClick={getQuizz} id='buttonBegin'>Commencer le Quizz</button>
+        </div> : null}
 
-      {quizzList.length === 0 && urlQuizApi != urlBase ? 
+      {quizzList === 404 || quizzList === 500 || quizzList === 429 ? 
+        <div>
+        <FiltersApi filtersApi={filtersApi} onChangeFilters={handleFiltersApi} />
         <div className="question containerQuizzCounter">
-          Pas de questions trouvées, désélectionnez les filtres actuels et essayez avec d&lsquo;autres ou actualisez la page </div> : null}
+          Pas de questions trouvées, essayez avec d&lsquo;autres filtres </div>
+        <button className="quizzButton" onClick={getQuizz} id='buttonBegin'>Commencer le Quizz</button>
+      </div> : null}
         
       {quizzList.length > 0 ? <Quizz quizzList={quizzList}/> : null}
 

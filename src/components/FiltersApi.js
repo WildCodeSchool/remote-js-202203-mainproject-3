@@ -3,11 +3,33 @@ import React from 'react';
 
 export function FiltersApi ({ filtersApi, onChangeFilters }) {
 
-  // const [difficulty, setDifficulty] = React.useState('any');
-  // const [category, setCategory] = React.useState('any');
-  // const [numberOfQuestion, setNumberOfQuestion] = React.useState(10);
-  // const [tagsChoice, setTagsChoice] = React.useState('');
+  const tagsByCategory = {
+    'any' : ['HTML', 'JavaScript', 'PHP', 'Laravel', 'MySQL', 'WordPress', 'Linux', 'BASH', 'DevOps', 'Docker', 'Kubernetes'],
+    'code' : ['HTML', 'JavaScript', 'PHP', 'Laravel'],
+    'sql': ['MySQL'],
+    'cms' : ['WordPress'],
+    'linux': ['Linux', 'BASH', 'Kubernetes'],
+    'devops': ['DevOps', 'Kubernetes'],
+    'docker': ['Docker', 'Kubernetes'],
+  };
 
+  function handleTagsByCategory(category) {
+    const tags = tagsByCategory[category];
+    const elem = document.getElementById('tagsChoice');
+    console.log(tags);
+    const len = (elem.length);
+    console.log(len);
+    for (let i = 1; i <= len; i++) {
+      console.log(i);
+      elem.remove(i);
+    }
+    console.log(elem.length);
+
+    tags.forEach(function(element, key) {
+        elem[key] = new Option(element, element.toLowerCase(), key);
+   });
+  }
+  
   function handleFiltersApi (filtersApi) {
     onChangeFilters(filtersApi);
   }
@@ -27,7 +49,9 @@ export function FiltersApi ({ filtersApi, onChangeFilters }) {
     switch (target.id) {
       case 'difficulty' : filtersApi['difficulty'] = target.value;
         break;
-      case 'category' : filtersApi['category'] = target.value;
+      case 'category' : 
+        filtersApi['category'] = target.value;
+        handleTagsByCategory(target.value);
         break;
       case 'numberOfQuestion' : filtersApi['limit'] = parseInt(target.value);
         break;
@@ -39,28 +63,29 @@ export function FiltersApi ({ filtersApi, onChangeFilters }) {
   return (
     <div className="containerQuizzGlobal" id="filtersApi">
       <form className="reponse" id="formCheck" type='submit' method='get' action='/' onChange={() => handleFiltersApi(filtersApi)}> {/* onChange={(event) => setURL(event)} */}
-        <div>
+      <div>
+          <label className="form-label">Category </label>
+          <select id='category' className="" name="category" 
+            onChange={(event) => handleChange(event.target)}>
+              <option value="any">Any Category</option>
+              <option value="code">Code</option>
+              <option value="sql">SQL</option>
+              <option value="cms">CMS</option>
+              <option value="linux">Linux</option>
+              <option value="devops">DevOps</option>
+              <option value="docker">Docker</option>
+          </select>            
+        </div>
+        <br />
         <div className="form-group">
           <label className="form-label">Difficulty </label>
-          <select id='difficulty' className="" name="difficulty" onChange={(event) => handleChange(event.target)}>
-            <option value="any">Any Difficulty</option>
+          <select id='difficulty' className="" name="difficulty" 
+            onChange={(event) => handleChange(event.target)}>
+              <option value="any">Any Difficulty</option>
               <option value="Easy">Easy</option>
               <option value="Medium">Medium</option>
               <option value="Hard">Hard</option>
           </select>
-        </div>
-        <br />
-          <label className="form-label">Category </label>
-          <select id='category' className="" name="category" onChange={(event) => handleChange(event.target)}>
-            <option value="any">Any Category</option>
-              <option value="code">Code</option>
-              <option value="sql">SQL</option>
-              <option value="linux">Linux</option>
-              <option value="bash">Bash</option>
-              <option value="devops">DevOps</option>
-              <option value="docker">Docker</option>
-              <option value="uncategorized">Uncategorized</option>
-          </select>            
         </div>
         <br />
         <div className="form-group">
@@ -71,8 +96,7 @@ export function FiltersApi ({ filtersApi, onChangeFilters }) {
         <p>
           <label className="form-label">Tags</label>
           <br />
-          <select id='tagsChoice' name="tags" size="11" multiple form="idFormulaire" 
-            onChange={(event) => handleChange(event.target)}>
+          <select id='tagsChoice' name="tags" onChange={(event) => handleChange(event.target)}>
             <option value="html">HTML</option>
             <option value="javascript">JavaScript</option>
             <option value="php">PHP</option>
@@ -90,3 +114,6 @@ export function FiltersApi ({ filtersApi, onChangeFilters }) {
     </div>
   );
 }
+
+// size="11" multiple form="idFormulaire" 
+{/*  */}
