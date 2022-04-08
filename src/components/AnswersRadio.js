@@ -1,20 +1,25 @@
 import React from 'react';
 
+
 function AnswersRadio({ 
-  answers, 
-  currentQuestion,  
+  correction, 
+  handleCorrection, 
+  currentQuestion, 
+  answers,  
   resultCounter, 
   setResultCounter, 
   handleDisplayChrono, 
   handleDisable, 
   disable, 
   setResultCurrentQuestion, 
-  resultCurrentQuestion }){
-    
+  resultCurrentQuestion
+ }) {
+  
+
   const buttonValidateID = document.getElementById('buttonHandleValidateID');
   const [check, setCheck] = React.useState('');
 
-    //Stockage des réponses objet dans un tableau
+    // //Stockage des réponses objet dans un tableau
     const tabAnswers = [
       currentQuestion.correct_answers.answer_a_correct,
       currentQuestion.correct_answers.answer_b_correct,
@@ -22,17 +27,10 @@ function AnswersRadio({
       currentQuestion.correct_answers.answer_d_correct,
       currentQuestion.correct_answers.answer_e_correct,
       currentQuestion.correct_answers.answer_f_correct];
-
-      console.log(tabAnswers);
-  
-      const goodResponse = (tabAnswers.map( answer => answer === 'true' ? 'vert' : 'rouge'));
-      console.log('goodResponse: ' + goodResponse);
-  
   
     // Fonction de controle des réponses
     function controle(event){
-      console.log(check);
-      console.log('Check TARGET VALUE: ' + check.target.value);
+
       handleDisplayChrono();
       handleDisable();
       // Initialisation des variables
@@ -65,66 +63,67 @@ function AnswersRadio({
 
       //Stockage des réponses utilisateurs dans un tableau
       const tabAnswersUser =[answerA, answerB, answerC, answerD, answerE, answerF];
-
-
         
-        // Comparaison des 2 tableaux
-        
-         if ( JSON.stringify(tabAnswersUser) === JSON.stringify(tabAnswers)){
-           setResultCounter(resultCounter + 1);
-           console.log('WIN');
-           setResultCurrentQuestion('Bonne réponse 🥂');
-          }else{
-           console.log('LOSE');
-           setResultCurrentQuestion('Mauvaise réponse 😭');
-         }
+      // Comparaison des 2 tableaux      
+      if ( JSON.stringify(tabAnswersUser) === JSON.stringify(tabAnswers)){
+        setResultCounter(resultCounter + 1);
+        console.log('WIN');
+        setResultCurrentQuestion('Bonne réponse 🥂');
+      }else{
+        console.log('LOSE');
+        setResultCurrentQuestion('Mauvaise réponse 😭');
+      }
+      handleCorrection();
     }
-
+        
     return(    
     <div className='answersRadio'>
 
     {/* Affichage des réponses */}
     <form className="reponse" id="formCheck" onSubmit={(event) => controle(event)} onChange={(event) => setCheck(event)}>
-      <div className="listResponse">
-        <input type='radio' className='inputcheck' name="answers" id='answer_a' value={currentQuestion.correct_answers.answer_a_correct} disabled={disable} required/>
+      <div className = {correction[0]}>
+        <input type='radio' className='inputcheck' name="answers" id='answer_a' value='true' disabled={disable} required/>
         <label htmlFor="answer_a" >{answers.answer_a}</label>
       </div>
 
-      <div className="listResponse">
-        <input type='radio' className='inputcheck' name="answers" id='answer_b' value={currentQuestion.correct_answers.answer_b_correct} disabled={disable}/>
+      < div className = {correction[1]}>
+        <input type='radio' className='inputcheck' name="answers" id='answer_b' value='true'disabled={disable}/>
         <label htmlFor="answer_b" >{answers.answer_b}</label>
       </div>
 
       {answers.answer_c ?
-      <div className="listResponse">
-        <input type='radio' className='inputcheck' name="answers" id='answer_c' value={currentQuestion.correct_answers.answer_c_correct} disabled={disable}/>
+      < div className = {correction[2]} >
+        <input type='radio' className='inputcheck' name="answers" id='answer_c' value='true'disabled={disable}/>
         <label htmlFor="answer_c" >{answers.answer_c}</label>
       </div>: null}
 
       {answers.answer_d ?
-      <div className="listResponse">
-        <input type='radio' className='inputcheck' name="answers" id='answer_d' value={currentQuestion.correct_answers.answer_d_correct} disabled={disable}/>
+      < div className = {correction[3]}>
+        <input type='radio' className='inputcheck' name="answers" id='answer_d' value='true'disabled={disable}/>
         <label htmlFor="answer_d" >{answers.answer_d}</label>
       </div>: null}
 
       {answers.answer_e ?
-        <div className="listResponse">
-          <input type='radio' className='inputcheck' name="answers" id='answer_e' value={currentQuestion.correct_answers.answer_e_correct} disabled={disable}/>
+        <div className={correction[4]}>
+          <input type='radio' className='inputcheck' name="answers" id='answer_e' value='true'disabled={disable}/>
           <label htmlFor="answer_e" >{answers.answer_e}</label>
         </div>: null}
       
       {answers.answer_f ?
-        <div className="listResponse">
-          <input type='radio' className='inputcheck' name="answers" id='answer_f' value={currentQuestion.correct_answers.answer_f_correct} disabled={disable}/>
+        <div className={correction[5]}>
+          <input type='radio' className='inputcheck' name="answers" id='answer_f' value='true'disabled={disable}/>
           <label htmlFor="answer_f">{answers.answer_f}</label>
         </div>: null}
         <div className="containerButtonValidate">
-          <button type="submit" id="buttonHandleValidateID" className="buttonHandleValidate" >Validate</button>
+          <button type="submit" id="buttonHandleValidateID" className="buttonHandleValidate">Valider</button>
         </div>
   </form>
-  <div className='container_current_question'>
-    <p className='current_question'>{resultCurrentQuestion}</p>
+
+  {(resultCurrentQuestion === null)? null
+   : <div className='container_current_question'>
+      <p className='current_question'>{resultCurrentQuestion}</p>
     </div>
-</div>);
+  }
+  </div>);
 }
 export default AnswersRadio;

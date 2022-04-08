@@ -39,15 +39,13 @@ function App() {
        });
   };
 
+  console.log(quizzList);
+
   return (
     <div className="App">
       <main>
-        <h1 className="title">The mystère Quizz</h1>
+        <h1 className="title">The mystery Quizz</h1>
       </main>
-      
-
-      {/* {urlQuizApi === urlBase ? */}
-
       {quizzList.length === 0 ? 
         <div>
           <FiltersApi filtersApi={filtersApi} onChangeFilters={handleFiltersApi} />
@@ -62,7 +60,7 @@ function App() {
         <button className="quizzButton" onClick={getQuizz} id='buttonBegin'>Commencer le Quizz</button>
       </div> : null}
         
-      {quizzList.length > 0 ? <Quizz quizzList={quizzList}/> : null}
+      {quizzList.length > 0 ? <Quizz quizzList={quizzList} /> : null}
 
       <footer>
         <p>Créé par des développeurs au TOP</p>

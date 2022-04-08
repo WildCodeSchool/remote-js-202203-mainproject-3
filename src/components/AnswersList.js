@@ -2,7 +2,9 @@ import React from 'react';
 import AnswersRadio from './AnswersRadio';
 import AnswersCheckbox from './AnswersCheckbox';
 
-function AnswersList({ 
+function AnswersList({
+  handleCorrection,
+  correction,
   answers, 
   currentQuestion, 
   resultCounter, 
@@ -15,33 +17,37 @@ function AnswersList({
 
   let checkboxOrRadio = (currentQuestion.multiple_correct_answers === 'true') ? 'checkbox' : 'radio';
 
-    
-    console.log(currentQuestion);
     return (
       <section className='answers'>
         {checkboxOrRadio === 'radio' ? <div className='answersRadio'>
           <AnswersRadio 
+          handleCorrection={handleCorrection} 
+          correction={correction} 
           disable={disable} 
           handleDisable={handleDisable} 
+          currentQuestion={ currentQuestion }
           handleDisplayChrono={handleDisplayChrono} 
-          answers={answers} 
-          currentQuestion={ currentQuestion } 
+          answers={answers}
           resultCounter={resultCounter} 
           setResultCounter={setResultCounter} 
           setResultCurrentQuestion={setResultCurrentQuestion} 
-          resultCurrentQuestion={resultCurrentQuestion}/> </div> : null}
-       
+          resultCurrentQuestion={resultCurrentQuestion} 
+          /> </div> : null}
+
         {checkboxOrRadio === 'checkbox' ? <div className='answersCheckbox'>
           <AnswersCheckbox 
+          handleCorrection={handleCorrection} 
+          correction={correction} 
           disable={disable} 
           handleDisable={handleDisable} 
-          handleDisplayChrono={handleDisplayChrono} 
-          answers={answers} 
           currentQuestion={ currentQuestion } 
           resultCounter={resultCounter} 
+          handleDisplayChrono={handleDisplayChrono} 
+          answers={answers}
           setResultCounter={setResultCounter} 
           setResultCurrentQuestion={setResultCurrentQuestion} 
-          resultCurrentQuestion={resultCurrentQuestion}/> </div> : null}
+          resultCurrentQuestion={resultCurrentQuestion}
+          /> </div> : null}
       </section>
     ); 
   }
