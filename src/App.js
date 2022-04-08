@@ -42,7 +42,7 @@ function App() {
   return (
     <div className="App">
       <main>
-        <h1 className="title">The mystère Quizz</h1>
+        <h1 className="title">The mystery Quizz</h1>
       </main>
       {quizzList.length === 0 ? 
         <div><FiltersApi filtersApi={filtersApi} onChangeFilters={handleFiltersApi} />
